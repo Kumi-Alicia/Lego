@@ -1,0 +1,31 @@
+.barre-recherche{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.bouton-recherche{
+    -fx-background-color: #828282;
+    -fx-background-radius: 30;
+}
+
+.bar-gauche{
+    -fx-background-color: #D3D3D3;
+}
+
+.ombre-recherche{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.choix-lego-gauche{
+    -fx-background-color: #98F0A4;
+    -fx-background-radius: 30;
+}
+
+.add-btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
