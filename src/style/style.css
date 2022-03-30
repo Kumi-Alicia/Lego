@@ -29,3 +29,8 @@
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 100;
 }
+
+.lego-catalego{
+	-fx-background-color: #FFFFFF;
+        -fx-background-radius: 30;
+}
