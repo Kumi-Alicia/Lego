@@ -1,5 +1,5 @@
 package controleurs;
-import modeles.Lego;
+import modeles.Lego;	
 
 import java.io.IOException;
 import java.net.URL;
