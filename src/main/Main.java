@@ -24,6 +24,7 @@ import javafx.scene.transform.Transform;
 
 
 public class Main extends Application {
+	/*
 	@Override
 	public void start(Stage Catalego) {
 		try {
@@ -38,8 +39,25 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+	}*/
+	
+	class SmartGroup extends Group{
+		Rotate r;
+		Transform t = new Rotate();
+		
+		void rotateByX(int ang) {
+			r = new Rotate(ang, Rotate.X_AXIS);
+			t = t.createConcatenation(r);
+			this.getTransforms().clear();
+			this.getTransforms().addAll(t);
+		}
+		void rotateByY(int ang) {
+			r = new Rotate(ang, Rotate.Y_AXIS);
+			t = t.createConcatenation(r);
+			this.getTransforms().clear();
+			this.getTransforms().addAll(t);
+		}
 	}
-	/*
 	 private static final float WIDTH = 1400;
 	private static final float HEIGHT = 800;
 	
@@ -56,7 +74,7 @@ public class Main extends Application {
 		Cylinder cylindre = prepareCylinder();
 		Cylinder cylindre2 = prepareCylinder();
 		Box box = prepareBox();
-		Group group = new Group();	
+		SmartGroup group = new SmartGroup();	
 		group.getChildren().add(box);
 		group.getChildren().add(cylindre);
 		group.getChildren().add(cylindre2);
@@ -66,10 +84,9 @@ public class Main extends Application {
 		cylindre2.translateXProperty().set(-25);
 		cylindre2.translateYProperty().set(-8);
 		Camera camera = new PerspectiveCamera();
-		
 		SubScene subScene3D = new SubScene(group, WIDTH, HEIGHT,true,null);
 		subScene3D.setCamera(camera);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("VuePageJeu.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../vues/VuePageJeu.fxml"));
 		AnchorPane pane = loader.load();
 		pane.getChildren().add(subScene3D);
 		Scene scene = new Scene(pane);
@@ -99,7 +116,7 @@ public class Main extends Application {
 		return cylindre;
 	}
 	
-	private void initMouseControl(Group group, SubScene subScene3D, Stage stage) {
+	private void initMouseControl(SmartGroup group, SubScene subScene3D, Stage stage) {
 		Rotate xRotate;
 		Rotate yRotate;
 		group.getTransforms().addAll(xRotate = new Rotate(0,Rotate.X_AXIS), yRotate = new Rotate(0,Rotate.Y_AXIS));
@@ -127,23 +144,5 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	class SmartGroup extends Group{
-		Rotate r;
-		Transform t = new Rotate();
-		
-		void rotateByX(int ang) {
-			r = new Rotate(ang, Rotate.X_AXIS);
-			t = t.createConcatenation(r);
-			this.getTransforms().clear();
-			this.getTransforms().addAll(t);
-		}
-		void rotateByY(int ang) {
-			r = new Rotate(ang, Rotate.Y_AXIS);
-			t = t.createConcatenation(r);
-			this.getTransforms().clear();
-			this.getTransforms().addAll(t);
-		}
-	}
-}
-	 */
+	 
 }
