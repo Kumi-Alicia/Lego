@@ -29,3 +29,10 @@
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 100;
 }
+
+.titre-page-accueuil{
+	-fx-background-color: red;
+	-fx-text-fill: white;
+}
+
+	
