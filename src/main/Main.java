@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 
@@ -15,7 +16,7 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("../vues/VueCatalego.fxml"));
 			Catalego.setTitle("Catalego");
 			Catalego.setScene(new Scene(root));
-			Catalego.show();
+			Catalego.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
