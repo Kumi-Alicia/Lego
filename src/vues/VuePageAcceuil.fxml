@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurPageAcceuil">
    <children>
       <BorderPane layoutX="1315.0" layoutY="810.0" prefHeight="810.0" prefWidth="1322.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -42,7 +42,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="148.0" prefWidth="1315.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="405.0" stylesheets="@../style/style.css" text="nouveau">
+                        <Button mnemonicParsing="false" onAction="#switchToPageJeu" prefHeight="62.0" prefWidth="405.0" stylesheets="@../style/style.css" text="nouveau">
                            <font>
                               <Font name="Cambria Bold" size="32.0" />
                            </font>
