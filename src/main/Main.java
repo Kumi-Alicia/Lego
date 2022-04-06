@@ -31,9 +31,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage Catalego) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../vues/VueCatalego.fxml"));
-			Catalego.setTitle("Catalego");
-			Catalego.setScene(new Scene(root));
+			Parent root = FXMLLoader.load(getClass().getResource("../vues/VuePageAcceuil.fxml"));
+			Scene scene = new Scene(root);
+			Catalego.setScene(scene);
 			Catalego.show();	
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -159,5 +159,5 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	 
+	
 }

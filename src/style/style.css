@@ -30,10 +30,12 @@
     -fx-background-radius: 100;
 }
 
-
 .titre-page-accueuil{
 	-fx-background-color: red;
 	-fx-text-fill: white;
+	-fx-font-weight: bold;
+	
+	-fx-font-size:64;
 }
 
 	
