@@ -1,0 +1,31 @@
+[1mdiff --cc src/main/Main.java[m
+[1mindex 46f0edd,2f8ec71..0000000[m
+[1m--- a/src/main/Main.java[m
+[1m+++ b/src/main/Main.java[m
+[36m@@@ -1,12 -1,25 +1,26 @@@[m
+  package main;[m
+  	[m
+  import javafx.application.Application;[m
+[32m+ import javafx.beans.property.DoubleProperty;[m
+[32m+ import javafx.beans.property.SimpleDoubleProperty;[m
+  import javafx.fxml.FXMLLoader;[m
+  import javafx.stage.Stage;[m
+[32m+ import javafx.scene.Camera;[m
+[32m+ import javafx.scene.Group;[m
+  import javafx.scene.Parent;[m
+[32m+ import javafx.scene.PerspectiveCamera;[m
+  import javafx.scene.Scene;[m
+[32m +import javafx.scene.layout.AnchorPane;[m
+[32m+ import javafx.scene.SubScene;[m
+[32m+ import javafx.scene.input.ScrollEvent;[m
+[32m+ import javafx.scene.layout.AnchorPane;[m
+  import javafx.scene.layout.BorderPane;[m
+[32m+ import javafx.scene.paint.Color;[m
+[32m+ import javafx.scene.paint.PhongMaterial;[m
+[32m+ import javafx.scene.shape.Box;[m
+[32m+ import javafx.scene.shape.Cylinder;[m
+[32m+ import javafx.scene.transform.Rotate;[m
+[32m+ import javafx.scene.transform.Transform;[m
+  [m
+  [m
+  public class Main extends Application {[m

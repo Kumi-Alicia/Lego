@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurPageAcceuil">
    <children>
       <BorderPane layoutX="-8.0" layoutY="-7.0" prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -39,7 +39,7 @@
          <center>
             <VBox alignment="TOP_CENTER" prefHeight="587.0" prefWidth="80.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="262.0" prefWidth="561.0" style="-fx-background-color: red;">
+                  <HBox alignment="CENTER" prefHeight="262.0" prefWidth="561.0" style="-fx-background-color: E10808;">
                      <children>
                         <ImageView fitHeight="213.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -50,7 +50,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="207.0" prefWidth="615.0" style="-fx-background-color: #FFD733;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="198.0" prefWidth="599.0" style="-fx-background-color: #FFD733;" styleClass="titre-page-accueuil" stylesheets="@../style/style.css" text="nouveau" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#switchToPageJeu" prefHeight="193.0" prefWidth="599.0" style="-fx-background-color: #FFD733;" styleClass="titre-page-accueuil" stylesheets="@../style/style.css" text="nouveau" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="31.0" />
                            </font>
