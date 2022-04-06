@@ -1,5 +1,5 @@
 package main;
-	
+
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Camera;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
@@ -18,9 +19,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+import javafx.scene.shape.Shape3D;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
+import java.util.Random;
 
 
 public class Main extends Application {
@@ -40,7 +43,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}*/
-	
+
 	class SmartGroup extends Group{
 		Rotate r;
 		Transform t = new Rotate();
@@ -58,7 +61,9 @@ public class Main extends Application {
 			this.getTransforms().addAll(t);
 		}
 	}
-	 private static final float WIDTH = 1400;
+	
+	private static final Color[] colors = {Color.ROYALBLUE, Color.RED, Color.YELLOW, Color.GREEN, Color.ORANGE, Color.PURPLE};
+	private static final float WIDTH = 1400;
 	private static final float HEIGHT = 800;
 	
 	private double anchorX, anchorY;
@@ -74,27 +79,25 @@ public class Main extends Application {
 		Cylinder cylindre = prepareCylinder();
 		Cylinder cylindre2 = prepareCylinder();
 		Box box = prepareBox();
-		SmartGroup group = new SmartGroup();	
-		group.getChildren().add(box);
-		group.getChildren().add(cylindre);
-		group.getChildren().add(cylindre2);
-		box.translateYProperty().set(10);
-		cylindre.translateXProperty().set(25);
-		cylindre.translateYProperty().set(-8);
-		cylindre2.translateXProperty().set(-25);
-		cylindre2.translateYProperty().set(-8);
+		SmartGroup lego = prepareLego(box, cylindre, cylindre2);
+		SmartGroup legos = new SmartGroup();
+		legos.getChildren().add(lego);
 		Camera camera = new PerspectiveCamera();
-		SubScene subScene3D = new SubScene(group, WIDTH, HEIGHT,true,null);
+		SubScene subScene3D = new SubScene(legos, WIDTH, HEIGHT,true,null);
 		subScene3D.setCamera(camera);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../vues/VuePageJeu.fxml"));
 		AnchorPane pane = loader.load();
 		pane.getChildren().add(subScene3D);
 		Scene scene = new Scene(pane);
-		group.translateXProperty().set(WIDTH/2);
-		group.translateYProperty().set(HEIGHT/2);
-		group.translateZProperty().set(-1200);
-
-		initMouseControl(group, subScene3D, primaryStage);
+		lego.translateXProperty().set(WIDTH/2);
+		lego.translateYProperty().set(HEIGHT/2);
+		lego.translateZProperty().set(-1000);
+		int i=0;
+		for (i=0;i<legos.getChildren().size();i++) {
+			initMouseControl(legos.getChildren().get(i), subScene3D, primaryStage);
+		}
+		
+		
 		
 		primaryStage.setTitle("Genuine Coder");
 		primaryStage.setScene(scene);
@@ -102,24 +105,36 @@ public class Main extends Application {
 	}
 	
 	private Box prepareBox() {
-		PhongMaterial material = new PhongMaterial();
-		material.setDiffuseColor(Color.ROYALBLUE);
 		Box box = new Box(100,20,50);
-		box.setMaterial(material);
 		return box;
 	}
 	private Cylinder prepareCylinder() {
-		PhongMaterial material = new PhongMaterial();
-		material.setDiffuseColor(Color.ROYALBLUE);
 		Cylinder cylindre = new Cylinder(15,16,10);
-		cylindre.setMaterial(material);
 		return cylindre;
 	}
+	private SmartGroup prepareLego(Box box, Cylinder cylindre, Cylinder cylindre2) {
+		Random r = new Random();
+		SmartGroup lego = new SmartGroup();
+		lego.getChildren().add(box);
+		lego.getChildren().add(cylindre);
+		lego.getChildren().add(cylindre2);
+		box.translateYProperty().set(10);
+		cylindre.translateXProperty().set(25);
+		cylindre.translateYProperty().set(-8);
+		cylindre2.translateXProperty().set(-25);
+		cylindre2.translateYProperty().set(-8);
+		PhongMaterial material = new PhongMaterial();
+		material.setDiffuseColor(colors[r.nextInt(6)]);
+		box.setMaterial(material);
+		cylindre.setMaterial(material);
+		cylindre2.setMaterial(material);
+		return lego;
+	}
 	
-	private void initMouseControl(SmartGroup group, SubScene subScene3D, Stage stage) {
+	private void initMouseControl(Node node, SubScene subScene3D, Stage stage) {
 		Rotate xRotate;
 		Rotate yRotate;
-		group.getTransforms().addAll(xRotate = new Rotate(0,Rotate.X_AXIS), yRotate = new Rotate(0,Rotate.Y_AXIS));
+		node.getTransforms().addAll(xRotate = new Rotate(0,Rotate.X_AXIS), yRotate = new Rotate(0,Rotate.Y_AXIS));
 		xRotate.angleProperty().bind(angleX);
 		yRotate.angleProperty().bind(angleY);
 		
@@ -137,7 +152,7 @@ public class Main extends Application {
 		
 		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
 			double delta = event.getDeltaY();
-			group.translateZProperty().set(group.getTranslateZ() + delta);
+			node.translateZProperty().set(node.getTranslateZ() - delta);
 		});
 	}
 
