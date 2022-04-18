@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurCatalegoPiece">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurCatalegoPiece">
    <children>
       <BorderPane layoutX="-4.0" prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -39,7 +39,7 @@
                         <Insets bottom="20.0" left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
-                        <TextField prefHeight="40.0" prefWidth="210.0" promptText="Rechercher un lego" styleClass="transparent" stylesheets="@../style/style.css">
+                        <TextField fx:id="recherche" onKeyTyped="#rechercheLego" prefHeight="40.0" prefWidth="210.0" promptText="Rechercher un lego" styleClass="transparent" stylesheets="@../style/style.css">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -47,7 +47,6 @@
                               <Font size="18.0" />
                            </font>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="bouton-recherche" stylesheets="@../style/style.css" text="Search" textFill="WHITE" />
                      </children>
                      <styleClass>
                         <String fx:value="barre-recherche" />
