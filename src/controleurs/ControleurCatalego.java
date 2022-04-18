@@ -1,7 +1,6 @@
 package controleurs;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
