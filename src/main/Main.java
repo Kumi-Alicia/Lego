@@ -26,12 +26,22 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
 import java.util.Random;
 
+import controleurs.ControleurCatalego;
+import controleurs.ControleurCatalegoPiece;
+import controleurs.ControleurPageAcceuil;
+import controleurs.ControleurPageJeu;
+
 
 public class Main extends Application {
 	
 	@Override
 	public void start(Stage Catalego) {
 		try {
+			ControleurPageAcceuil cAccueil = new ControleurPageAcceuil();
+			ControleurPageJeu cJeu = new ControleurPageJeu();
+			ControleurCatalego cCatalego = new ControleurCatalego();
+			ControleurCatalegoPiece cPiece = new ControleurCatalegoPiece();
+			
 			Parent root = FXMLLoader.load(getClass().getResource("../vues/VuePageAcceuil.fxml"));
 			Scene scene = new Scene(root);
 			Catalego.setScene(scene);
