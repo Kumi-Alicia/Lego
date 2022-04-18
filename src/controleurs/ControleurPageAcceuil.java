@@ -14,6 +14,7 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -28,11 +29,11 @@ public class ControleurPageAcceuil {
 	public Stage stage;
 	public Scene scene;
 	public Parent root;
-	
+
 	class SmartGroup extends Group{
 		Rotate r;
 		Transform t = new Rotate();
-		
+
 		void rotateByX(int ang) {
 			r = new Rotate(ang, Rotate.X_AXIS);
 			t = t.createConcatenation(r);
@@ -46,17 +47,17 @@ public class ControleurPageAcceuil {
 			this.getTransforms().addAll(t);
 		}
 	}
-	
+
 	private static final float WIDTH = 1400;
 	private static final float HEIGHT = 800;
-	
+
 	private double anchorX, anchorY;
 	private double anchorAngleX = 0;
 	private double anchorAngleY = 0;
 	private SmartGroup ensembleGroup = new SmartGroup();
 	private final DoubleProperty angleX = new SimpleDoubleProperty(0);
 	private final DoubleProperty angleY = new SimpleDoubleProperty(0);
-	
+
 	private Box prepareBox() {
 		PhongMaterial material = new PhongMaterial();
 		material.setDiffuseColor(Color.ROYALBLUE);
@@ -71,19 +72,45 @@ public class ControleurPageAcceuil {
 		cylindre.setMaterial(material);
 		return cylindre;
 	}
-	
+
 	private void initMouseControl(Node node, SubScene subScene3D, Stage stage) {
 		Rotate xRotate;
 		Rotate yRotate;
 		node.getTransforms().addAll(xRotate = new Rotate(0,Rotate.X_AXIS), yRotate = new Rotate(0,Rotate.Y_AXIS));
 		xRotate.angleProperty().bind(angleX);
 		yRotate.angleProperty().bind(angleY);
-		
+
 		subScene3D.setOnMousePressed(event -> {
 			anchorX = event.getSceneX();
 			anchorY = event.getSceneY();
 			anchorAngleX = angleX.get();
 			anchorAngleY = angleY.get();
+		});
+		subScene3D.setOnMouseClicked(event -> {
+			anchorX = event.getSceneX();
+			anchorY = event.getSceneY();
+			anchorAngleX = angleX.get();
+			anchorAngleY = angleY.get();
+			SmartGroup nveauGroup = new SmartGroup();
+			Box nvlleBox = prepareBox();
+			Cylinder nveauCylindre = prepareCylinder();
+			Cylinder nveauCylindre2 = prepareCylinder();
+			nveauGroup.getChildren().add(nvlleBox);
+			nveauGroup.getChildren().add(nveauCylindre);
+			nveauGroup.getChildren().add(nveauCylindre2);
+			ensembleGroup.getChildren().add(nveauGroup);
+			nvlleBox.translateYProperty().set(10);
+			nveauCylindre.translateXProperty().set(25);
+			nveauCylindre.translateYProperty().set(-8);
+			nveauCylindre2.translateXProperty().set(-25);
+			nveauCylindre2.translateYProperty().set(-8);
+			nveauGroup.translateXProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-2).getTranslateX());
+			nveauGroup.translateYProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-2).getTranslateY()-20);
+			nveauGroup.translateZProperty().set(-800);
+			initMouseControl(nveauGroup, subScene3D, stage);
+			
+			
+			
 		});
 		subScene3D.setOnMouseDragged(event -> {
 			angleX.set(anchorAngleX - anchorY - event.getSceneY());
@@ -94,22 +121,32 @@ public class ControleurPageAcceuil {
 			node.translateZProperty().set(node.getTranslateZ() - delta);
 		});
 	}
-	
+
 	public void switchToPageJeu(ActionEvent event) throws IOException{
 		Cylinder cylindre = prepareCylinder();
 		Cylinder cylindre2 = prepareCylinder();
 		Box box = prepareBox();
+		Cylinder cylindre3 = prepareCylinder();
+		Cylinder cylindre4 = prepareCylinder();
+		Box box2 = prepareBox();
 		SmartGroup group = new SmartGroup();
-		
 		group.getChildren().add(box);
 		group.getChildren().add(cylindre);
 		group.getChildren().add(cylindre2);
+		group.getChildren().add(box2);
+		group.getChildren().add(cylindre3);
+		group.getChildren().add(cylindre4);
 		ensembleGroup.getChildren().add(group);
 		box.translateYProperty().set(10);
 		cylindre.translateXProperty().set(25);
 		cylindre.translateYProperty().set(-8);
 		cylindre2.translateXProperty().set(-25);
 		cylindre2.translateYProperty().set(-8);
+		box2.translateYProperty().set(30);
+		cylindre3.translateXProperty().set(25);
+		cylindre3.translateYProperty().set(18);
+		cylindre4.translateXProperty().set(-25);
+		cylindre4.translateYProperty().set(18);
 		Camera camera = new PerspectiveCamera();
 		SubScene subScene3D = new SubScene(ensembleGroup, WIDTH, HEIGHT,true,null);
 		subScene3D.setCamera(camera);
@@ -124,34 +161,9 @@ public class ControleurPageAcceuil {
 		for (int i=0;i<ensembleGroup.getChildren().size();i++) {
 			initMouseControl(ensembleGroup.getChildren().get(i), subScene3D, stage);
 		}
-		
+
 		stage.setTitle("Genuine Coder");
 		stage.setScene(scene);
 		stage.show();
-		stage.addEventHandler(KeyEvent.KEY_PRESSED, event1 -> {
-		      switch (event1.getCode()) {
-		        case W:
-		          SmartGroup nveauGroup = new SmartGroup();
-		          Box nvlleBox = new Box(100,20,50);
-		          Cylinder nveauCylindre = new Cylinder(15,16,10);
-		          Cylinder nveauCylindre2 = new Cylinder(15,16,10);
-		  		  nveauGroup.getChildren().add(nvlleBox);
-				  nveauGroup.getChildren().add(nveauCylindre);
-				  nveauGroup.getChildren().add(nveauCylindre2);
-				  ensembleGroup.getChildren().add(nveauGroup);
-				  nvlleBox.translateYProperty().set(10);
-				  nveauCylindre.translateXProperty().set(25);
-				  nveauCylindre.translateYProperty().set(-8);
-				  nveauCylindre2.translateXProperty().set(-25);
-				  nveauCylindre2.translateYProperty().set(-8);
-				  nveauGroup.translateXProperty().set(WIDTH/3);
-				  nveauGroup.translateYProperty().set(HEIGHT/3);
-				  nveauGroup.translateZProperty().set(-800);
-				  for (int i=1;i<ensembleGroup.getChildren().size();i++) {
-						initMouseControl(ensembleGroup.getChildren().get(i), subScene3D, stage);
-				  }
-		          break;
-		      }
-		    });
 	}
 }
