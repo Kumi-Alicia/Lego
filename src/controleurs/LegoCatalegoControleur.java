@@ -27,8 +27,8 @@ public class LegoCatalegoControleur {
     	this.lego=leg;
     	this.myListener = myListener;
     	
-    	this.labelLeg.setText(lego.getNom());
-    	Image imag = new Image(getClass().getResourceAsStream(lego.getImageLego()));
+    	this.labelLeg.setText(lego.nom);
+    	Image imag = new Image(getClass().getResourceAsStream(lego.imageLego));
     	this.image.setImage(imag);
     }
 }
