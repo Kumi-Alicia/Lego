@@ -162,7 +162,7 @@ public class ControleurPageAcceuil {
 			initMouseControl(ensembleGroup.getChildren().get(i), subScene3D, stage);
 		}
 
-		stage.setTitle("Genuine Coder");
+		stage.setTitle("Page jeu");
 		stage.setScene(scene);
 		stage.show();
 	}
