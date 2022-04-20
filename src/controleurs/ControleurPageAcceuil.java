@@ -166,4 +166,8 @@ public class ControleurPageAcceuil {
 		stage.setScene(scene);
 		stage.show();
 	}
+	public void fermerApplication(ActionEvent event) throws IOException{
+		 System.out.println("L'application va se fermer!");
+		 System.exit(0);
+	}
 }

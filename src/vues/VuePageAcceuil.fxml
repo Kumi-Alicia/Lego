@@ -81,7 +81,7 @@
          <right>
             <VBox alignment="TOP_RIGHT" prefHeight="856.0" prefWidth="350.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="41.0" text="X">
+                  <Button mnemonicParsing="false" onAction="#fermerApplication" prefHeight="55.0" prefWidth="41.0" text="X">
                      <font>
                         <Font size="26.0" />
                      </font>
