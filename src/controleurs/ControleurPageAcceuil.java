@@ -173,8 +173,12 @@ public class ControleurPageAcceuil {
 			initMouseControl(ensembleGroup.getChildren().get(i), subScene3D, stage);
 		}
 
-		stage.setTitle("Genuine Coder");
+		stage.setTitle("Page jeu");
 		stage.setScene(scene);
 		stage.show();
+	}
+	public void fermerApplication(ActionEvent event) throws IOException{
+		 System.out.println("L'application va se fermer!");
+		 System.exit(0);
 	}
 }
