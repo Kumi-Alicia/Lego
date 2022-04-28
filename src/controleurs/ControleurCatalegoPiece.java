@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -49,7 +52,9 @@ public class ControleurCatalegoPiece implements Initializable{
 
 	@FXML
 	private TextField recherche;
-
+	
+	@FXML
+    private ComboBox tri;
 
 	public ArrayList<Lego> legoliste = new ArrayList<Lego>();
 	public CatalegoPiece legolist;
@@ -62,6 +67,14 @@ public class ControleurCatalegoPiece implements Initializable{
 		this.legolist=new CatalegoPiece();
 		this.legolist.dicoInitial();
 	}
+	
+	
+	 @FXML
+	 void selectiontri(ActionEvent event) {
+		 String s = tri.getSelectionModel().getSelectedItem().toString();
+		 System.out.println(s);
+	 }
+	
 	@FXML
 	void rechercheLego(KeyEvent event) throws IOException {
 		String laRecherche=this.recherche.getText();
@@ -123,6 +136,8 @@ public class ControleurCatalegoPiece implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		this.tri.getItems().addAll("Alphabetique","Couleur");
+		this.tri.setValue("Alphabetique");
 		setChoixLego(this.legolist.get(this.legolist.firstKey()));
 		this.myListener = new MyListener() {
 			@Override
