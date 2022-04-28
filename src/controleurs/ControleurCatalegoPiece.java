@@ -52,9 +52,9 @@ public class ControleurCatalegoPiece implements Initializable{
 
 	@FXML
 	private TextField recherche;
-	
+
 	@FXML
-    private ComboBox tri;
+	private ComboBox tri;
 
 	public ArrayList<Lego> legoliste = new ArrayList<Lego>();
 	public CatalegoPiece legolist;
@@ -67,13 +67,82 @@ public class ControleurCatalegoPiece implements Initializable{
 		this.legolist=new CatalegoPiece();
 		this.legolist.dicoInitial();
 	}
+
+
+	@FXML
+	void selectiontri(ActionEvent event) {
+		String s = tri.getSelectionModel().getSelectedItem().toString();
+		String [] couleurs= {"bleu","jaune","gris","rouge","vert"};
+		for(int i=0;i<this.legolist.tailleDicoInit;i++) {
+			this.grid.getChildren().clear();
+		}
+		if(s=="Couleur") {
+			if(this.legolist.size()!=0) {
+				int column = 0;
+				int row = 1;
+				try {
+					for(int j=0 ; j<couleurs.length;j++) {
+						for(String nom : this.legolist.keySet()) {
+							if(nom.contains(couleurs[j])) {
+								FXMLLoader fxmlLoader = new FXMLLoader();
+								fxmlLoader.setLocation(getClass().getResource("/vues/LegoCatalego.fxml"));
+								AnchorPane anchorPane = fxmlLoader.load();
+								LegoCatalegoControleur LegoCatControleur = fxmlLoader.getController();
+								LegoCatControleur.setData(this.legolist.get(nom),this.myListener);
+								if(column == 3) {
+									column = 0;
+									row++;
+								}
+								this.grid.add(anchorPane, column++, row);
+								this.grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+								this.grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+								this.grid.setMaxWidth(Region.USE_COMPUTED_SIZE);
+								this.grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+								this.grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+								this.grid.setMaxHeight(Region.USE_COMPUTED_SIZE);
+								GridPane.setMargin(anchorPane,new Insets(10));
+							}
+						}
+					}
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		else {
+			if(this.legolist.size()!=0) {
+				int column = 0;
+				int row = 1;
+				try {
+					for(String nom : this.legolist.keySet()) {
+						FXMLLoader fxmlLoader = new FXMLLoader();
+						fxmlLoader.setLocation(getClass().getResource("/vues/LegoCatalego.fxml"));
+						AnchorPane anchorPane = fxmlLoader.load();
+						LegoCatalegoControleur LegoCatControleur = fxmlLoader.getController();
+						LegoCatControleur.setData(this.legolist.get(nom),this.myListener);
+						if(column == 3) {
+							column = 0;
+							row++;
+						}
+						this.grid.add(anchorPane, column++, row);
+						this.grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+						this.grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+						this.grid.setMaxWidth(Region.USE_COMPUTED_SIZE);
+						this.grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+						this.grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+						this.grid.setMaxHeight(Region.USE_COMPUTED_SIZE);
+						GridPane.setMargin(anchorPane,new Insets(10));
+					}
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
 	
-	
-	 @FXML
-	 void selectiontri(ActionEvent event) {
-		 String s = tri.getSelectionModel().getSelectedItem().toString();
-		 System.out.println(s);
-	 }
 	
 	@FXML
 	void rechercheLego(KeyEvent event) throws IOException {
@@ -94,7 +163,6 @@ public class ControleurCatalegoPiece implements Initializable{
 				@Override
 				public void onClickListener(Lego lego) {
 					setChoixLego(lego);
-
 				}
 			};
 			int column = 0;
