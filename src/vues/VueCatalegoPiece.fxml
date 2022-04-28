@@ -134,7 +134,7 @@
                         </Label>
                         <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="202.0">
                            <children>
-                              <ComboBox prefHeight="26.0" prefWidth="124.0" />
+                              <ComboBox fx:id="tri" onAction="#selectiontri" prefHeight="26.0" prefWidth="124.0" />
                            </children>
                            <HBox.margin>
                               <Insets bottom="25.0" left="10.0" />
