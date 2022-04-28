@@ -104,8 +104,14 @@ public class ControleurPageAcceuil {
 			nveauCylindre.translateYProperty().set(-8);
 			nveauCylindre2.translateXProperty().set(-25);
 			nveauCylindre2.translateYProperty().set(-8);
-			nveauGroup.translateXProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-2).getTranslateX());
-			nveauGroup.translateYProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-2).getTranslateY()-20);
+			ensembleGroup.getChildren().get(1).setOnMouseClicked(event1 -> {
+				System.out.println("clic");
+			});
+			ensembleGroup.getChildren().get(0).setOnMouseClicked(event2 -> {
+				System.out.println("clac");
+			});
+			nveauGroup.translateXProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-3).getTranslateX());
+			nveauGroup.translateYProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-3).getTranslateY()-20);
 			nveauGroup.translateZProperty().set(-800);
 			initMouseControl(nveauGroup, subScene3D, stage);
 			
@@ -113,7 +119,7 @@ public class ControleurPageAcceuil {
 			
 		});
 		subScene3D.setOnMouseDragged(event -> {
-			angleX.set(anchorAngleX - anchorY - event.getSceneY());
+			//angleX.set(anchorAngleX - anchorY - event.getSceneY());
 			angleY.set(anchorAngleY + anchorX - event.getSceneX());
 		});	
 		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
@@ -130,23 +136,25 @@ public class ControleurPageAcceuil {
 		Cylinder cylindre4 = prepareCylinder();
 		Box box2 = prepareBox();
 		SmartGroup group = new SmartGroup();
+		SmartGroup group2 = new SmartGroup();
 		group.getChildren().add(box);
 		group.getChildren().add(cylindre);
 		group.getChildren().add(cylindre2);
-		group.getChildren().add(box2);
-		group.getChildren().add(cylindre3);
-		group.getChildren().add(cylindre4);
+		group2.getChildren().add(box2);
+		group2.getChildren().add(cylindre3);
+		group2.getChildren().add(cylindre4);
 		ensembleGroup.getChildren().add(group);
+		ensembleGroup.getChildren().add(group2);
 		box.translateYProperty().set(10);
 		cylindre.translateXProperty().set(25);
 		cylindre.translateYProperty().set(-8);
 		cylindre2.translateXProperty().set(-25);
 		cylindre2.translateYProperty().set(-8);
-		box2.translateYProperty().set(30);
+		box2.translateYProperty().set(10);
 		cylindre3.translateXProperty().set(25);
-		cylindre3.translateYProperty().set(18);
+		cylindre3.translateYProperty().set(-8);
 		cylindre4.translateXProperty().set(-25);
-		cylindre4.translateYProperty().set(18);
+		cylindre4.translateYProperty().set(-8);
 		Camera camera = new PerspectiveCamera();
 		SubScene subScene3D = new SubScene(ensembleGroup, WIDTH, HEIGHT,true,null);
 		subScene3D.setCamera(camera);
@@ -156,14 +164,21 @@ public class ControleurPageAcceuil {
 		pane.getChildren().add(subScene3D);
 		Scene scene = new Scene(pane);
 		group.translateXProperty().set(WIDTH/2);
-		group.translateYProperty().set(HEIGHT/2);
+		group.translateYProperty().set(HEIGHT/1.5);
 		group.translateZProperty().set(-800);
+		group2.translateXProperty().set(WIDTH/1.5);
+		group2.translateYProperty().set(HEIGHT/1.5);
+		group2.translateZProperty().set(-800);
 		for (int i=0;i<ensembleGroup.getChildren().size();i++) {
 			initMouseControl(ensembleGroup.getChildren().get(i), subScene3D, stage);
 		}
 
-		stage.setTitle("Genuine Coder");
+		stage.setTitle("Page jeu");
 		stage.setScene(scene);
 		stage.show();
+	}
+	public void fermerApplication(ActionEvent event) throws IOException{
+		 System.out.println("L'application va se fermer!");
+		 System.exit(0);
 	}
 }
