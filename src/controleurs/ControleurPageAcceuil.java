@@ -1,6 +1,7 @@
 package controleurs;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -55,6 +56,9 @@ public class ControleurPageAcceuil {
 	private double anchorAngleX = 0;
 	private double anchorAngleY = 0;
 	private SmartGroup ensembleGroup = new SmartGroup();
+	LinkedList<Node> pile1 = new LinkedList();
+	LinkedList<Node> pile2 = new LinkedList();
+	private LinkedList<LinkedList<Node>> jeu = new LinkedList();
 	private final DoubleProperty angleX = new SimpleDoubleProperty(0);
 	private final DoubleProperty angleY = new SimpleDoubleProperty(0);
 
@@ -86,38 +90,41 @@ public class ControleurPageAcceuil {
 			anchorAngleX = angleX.get();
 			anchorAngleY = angleY.get();
 		});
-		subScene3D.setOnMouseClicked(event -> {
-			anchorX = event.getSceneX();
-			anchorY = event.getSceneY();
-			anchorAngleX = angleX.get();
-			anchorAngleY = angleY.get();
-			SmartGroup nveauGroup = new SmartGroup();
-			Box nvlleBox = prepareBox();
-			Cylinder nveauCylindre = prepareCylinder();
-			Cylinder nveauCylindre2 = prepareCylinder();
-			nveauGroup.getChildren().add(nvlleBox);
-			nveauGroup.getChildren().add(nveauCylindre);
-			nveauGroup.getChildren().add(nveauCylindre2);
-			ensembleGroup.getChildren().add(nveauGroup);
-			nvlleBox.translateYProperty().set(10);
-			nveauCylindre.translateXProperty().set(25);
-			nveauCylindre.translateYProperty().set(-8);
-			nveauCylindre2.translateXProperty().set(-25);
-			nveauCylindre2.translateYProperty().set(-8);
-			ensembleGroup.getChildren().get(1).setOnMouseClicked(event1 -> {
-				System.out.println("clic");
-			});
-			ensembleGroup.getChildren().get(0).setOnMouseClicked(event2 -> {
-				System.out.println("clac");
-			});
-			nveauGroup.translateXProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-3).getTranslateX());
-			nveauGroup.translateYProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-3).getTranslateY()-20);
-			nveauGroup.translateZProperty().set(-800);
-			initMouseControl(nveauGroup, subScene3D, stage);
-			
-			
-			
-		});
+			jeu.add(pile1);
+			jeu.add(pile2);
+			for (int i=0; i<ensembleGroup.getChildren().size();i++) {
+				Node lego = ensembleGroup.getChildren().get(i);
+				double X = ensembleGroup.getChildren().get(i).getTranslateX();
+				double Y = ensembleGroup.getChildren().get(i).getTranslateY();
+				ensembleGroup.getChildren().get(i).setOnMouseClicked(event1 ->{
+					for (int j=0; j<2; j++) {
+						if ((jeu.get(j)).get(0).getTranslateX() == X && (jeu.get(j)).get(0).getTranslateY() == Y) {
+							SmartGroup nveauGroup = new SmartGroup();
+							Box nvlleBox = prepareBox();
+							Cylinder nveauCylindre = prepareCylinder();
+							Cylinder nveauCylindre2 = prepareCylinder();
+							nveauGroup.getChildren().add(nvlleBox);
+							nveauGroup.getChildren().add(nveauCylindre);
+							nveauGroup.getChildren().add(nveauCylindre2);
+							jeu.get(j).add(lego);
+							ensembleGroup.getChildren().add(nveauGroup);
+							nvlleBox.translateYProperty().set(10);
+							nveauCylindre.translateXProperty().set(25);
+							nveauCylindre.translateYProperty().set(-8);
+							nveauCylindre2.translateXProperty().set(-25);
+							nveauCylindre2.translateYProperty().set(-8);
+							nveauGroup.translateXProperty().set(X);
+							nveauGroup.translateYProperty().set(Y+((jeu.get(j).size()-1))*(-20));
+							nveauGroup.translateZProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-3).getTranslateZ());
+							initMouseControl(nveauGroup, subScene3D, stage);
+							break;
+						}
+					}
+					
+				});
+			}
+				
+
 		subScene3D.setOnMouseDragged(event -> {
 			//angleX.set(anchorAngleX - anchorY - event.getSceneY());
 			angleY.set(anchorAngleY + anchorX - event.getSceneX());
@@ -169,10 +176,11 @@ public class ControleurPageAcceuil {
 		group2.translateXProperty().set(WIDTH/1.5);
 		group2.translateYProperty().set(HEIGHT/1.5);
 		group2.translateZProperty().set(-800);
+		pile1.add(ensembleGroup.getChildren().get(0));
+		pile2.add(ensembleGroup.getChildren().get(1));
 		for (int i=0;i<ensembleGroup.getChildren().size();i++) {
 			initMouseControl(ensembleGroup.getChildren().get(i), subScene3D, stage);
 		}
-
 		stage.setTitle("Page jeu");
 		stage.setScene(scene);
 		stage.show();
