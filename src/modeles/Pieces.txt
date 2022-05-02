@@ -1,0 +1,8 @@
+ Carre bleu,/images/carrebleu.png,A2F0F0
+ Carre vert,/images/carrevert.png,A2F0A3
+ Carre gris,/images/carregris.png,F6F6F6
+ Carre jaune,/images/carrejaune.png,FFF978
+ Rectangle bleu,/images/rectanglebleu.png,A2F0F0
+ Rectangle jaune,/images/rectanglejaune.png,FFF978
+ Rectangle rouge,/images/rectanglerouge.jpg,FD4040
+ Rectangle vert,/images/rectanglevert.jpg,A2F0A3
