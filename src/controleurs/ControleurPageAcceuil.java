@@ -98,32 +98,37 @@ public class ControleurPageAcceuil {
 				double Y = ensembleGroup.getChildren().get(i).getTranslateY();
 				ensembleGroup.getChildren().get(i).setOnMouseClicked(event1 ->{
 					for (int j=0; j<2; j++) {
-						if ((jeu.get(j)).get(0).getTranslateX() == X && (jeu.get(j)).get(0).getTranslateY() == Y) {
-							SmartGroup nveauGroup = new SmartGroup();
-							Box nvlleBox = prepareBox();
-							Cylinder nveauCylindre = prepareCylinder();
-							Cylinder nveauCylindre2 = prepareCylinder();
-							nveauGroup.getChildren().add(nvlleBox);
-							nveauGroup.getChildren().add(nveauCylindre);
-							nveauGroup.getChildren().add(nveauCylindre2);
-							jeu.get(j).add(lego);
-							ensembleGroup.getChildren().add(nveauGroup);
-							nvlleBox.translateYProperty().set(10);
-							nveauCylindre.translateXProperty().set(25);
-							nveauCylindre.translateYProperty().set(-8);
-							nveauCylindre2.translateXProperty().set(-25);
-							nveauCylindre2.translateYProperty().set(-8);
-							nveauGroup.translateXProperty().set(X);
-							nveauGroup.translateYProperty().set(Y+((jeu.get(j).size()-1))*(-20));
-							nveauGroup.translateZProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-3).getTranslateZ());
-							initMouseControl(nveauGroup, subScene3D, stage);
-							break;
+						for (int k=0; k<jeu.get(j).size(); k++) {
+							if ((jeu.get(j)).get(0).getTranslateX() == X ) {
+								SmartGroup nveauGroup = new SmartGroup();
+								Box nvlleBox = prepareBox();
+								Cylinder nveauCylindre = prepareCylinder();
+								Cylinder nveauCylindre2 = prepareCylinder();
+								nveauGroup.getChildren().add(nvlleBox);
+								nveauGroup.getChildren().add(nveauCylindre);
+								nveauGroup.getChildren().add(nveauCylindre2);
+								jeu.get(j).add(lego);
+								ensembleGroup.getChildren().add(nveauGroup);
+								nvlleBox.translateYProperty().set(10);
+								nveauCylindre.translateXProperty().set(25);
+								nveauCylindre.translateYProperty().set(-8);
+								nveauCylindre2.translateXProperty().set(-25);
+								nveauCylindre2.translateYProperty().set(-8);
+								nveauGroup.translateXProperty().set(X);
+								nveauGroup.translateYProperty().set(jeu.get(j).get(jeu.get(j).size()-1).getTranslateY()-20);
+								nveauGroup.translateZProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-3).getTranslateZ());
+								initMouseControl(nveauGroup, subScene3D, stage);
+								break;
+							}
+
 						}
 					}
-					
+
 				});
-			}
 				
+			}
+		
+
 
 		subScene3D.setOnMouseDragged(event -> {
 			//angleX.set(anchorAngleX - anchorY - event.getSceneY());
@@ -186,7 +191,7 @@ public class ControleurPageAcceuil {
 		stage.show();
 	}
 	public void fermerApplication(ActionEvent event) throws IOException{
-		 System.out.println("L'application va se fermer!");
-		 System.exit(0);
+		System.out.println("L'application va se fermer!");
+		System.exit(0);
 	}
 }
