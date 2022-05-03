@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
@@ -52,14 +53,14 @@ public class ControleurPageAcceuil {
 	private static final float WIDTH = 1400;
 	private static final float HEIGHT = 800;
 
-	private double anchorX, anchorY;
-	private double anchorAngleX = 0;
+	private double anchorX;
 	private double anchorAngleY = 0;
-	private SmartGroup ensembleGroup = new SmartGroup();
+	private int cote = 900;
+	private SmartGroup plateau_jeu = new SmartGroup();
+	Camera camera = new PerspectiveCamera();
 	LinkedList<Node> pile1 = new LinkedList();
 	LinkedList<Node> pile2 = new LinkedList();
-	private LinkedList<LinkedList<Node>> jeu = new LinkedList();
-	private final DoubleProperty angleX = new SimpleDoubleProperty(0);
+	private LinkedList<LinkedList<Node>> plateau_jeu_liste = new LinkedList();
 	private final DoubleProperty angleY = new SimpleDoubleProperty(0);
 
 	private Box prepareBox() {
@@ -78,97 +79,83 @@ public class ControleurPageAcceuil {
 	}
 
 	private void initMouseControl(Node node, SubScene subScene3D, Stage stage) {
-		Rotate xRotate;
 		Rotate yRotate;
-		node.getTransforms().addAll(xRotate = new Rotate(0,Rotate.X_AXIS), yRotate = new Rotate(0,Rotate.Y_AXIS));
-		xRotate.angleProperty().bind(angleX);
+		node.getTransforms().addAll(yRotate = new Rotate(0,Rotate.Y_AXIS));
 		yRotate.angleProperty().bind(angleY);
 
 		subScene3D.setOnMousePressed(event -> {
 			anchorX = event.getSceneX();
-			anchorY = event.getSceneY();
-			anchorAngleX = angleX.get();
 			anchorAngleY = angleY.get();
 		});
-			jeu.add(pile1);
-			jeu.add(pile2);
-			for (int i=0; i<ensembleGroup.getChildren().size();i++) {
-				Node lego = ensembleGroup.getChildren().get(i);
-				double X = ensembleGroup.getChildren().get(i).getTranslateX();
-				double Y = ensembleGroup.getChildren().get(i).getTranslateY();
-				ensembleGroup.getChildren().get(i).setOnMouseClicked(event1 ->{
-					for (int j=0; j<2; j++) {
-						for (int k=0; k<jeu.get(j).size(); k++) {
-							if ((jeu.get(j)).get(0).getTranslateX() == X ) {
-								SmartGroup nveauGroup = new SmartGroup();
-								Box nvlleBox = prepareBox();
-								Cylinder nveauCylindre = prepareCylinder();
-								Cylinder nveauCylindre2 = prepareCylinder();
-								nveauGroup.getChildren().add(nvlleBox);
-								nveauGroup.getChildren().add(nveauCylindre);
-								nveauGroup.getChildren().add(nveauCylindre2);
-								jeu.get(j).add(lego);
-								ensembleGroup.getChildren().add(nveauGroup);
-								nvlleBox.translateYProperty().set(10);
-								nveauCylindre.translateXProperty().set(25);
-								nveauCylindre.translateYProperty().set(-8);
-								nveauCylindre2.translateXProperty().set(-25);
-								nveauCylindre2.translateYProperty().set(-8);
-								nveauGroup.translateXProperty().set(X);
-								nveauGroup.translateYProperty().set(jeu.get(j).get(jeu.get(j).size()-1).getTranslateY()-20);
-								nveauGroup.translateZProperty().set(ensembleGroup.getChildren().get(ensembleGroup.getChildren().size()-3).getTranslateZ());
-								initMouseControl(nveauGroup, subScene3D, stage);
-								break;
-							}
-
+		plateau_jeu_liste.add(pile1);
+		plateau_jeu_liste.add(pile2);
+		for (int i=0; i<plateau_jeu.getChildren().size();i++) {
+			Node lego = plateau_jeu.getChildren().get(i);
+			double X = plateau_jeu.getChildren().get(i).getTranslateX();
+			plateau_jeu.getChildren().get(i).setOnMouseClicked(event1 ->{
+				for (int j=0; j<2; j++) {
+					for (int k=0; k<plateau_jeu_liste.get(j).size(); k++) {
+						if ((plateau_jeu_liste.get(j)).get(0).getTranslateX() == X ) {
+							SmartGroup nveauGroup = nouveauLego();
+							plateau_jeu_liste.get(j).add(lego);
+							
+							nveauGroup.translateXProperty().set(X);
+							nveauGroup.translateYProperty().set(plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-1).getTranslateY()-20);
+							nveauGroup.translateZProperty().set(plateau_jeu.getChildren().get(plateau_jeu.getChildren().size()-3).getTranslateZ());
+							initMouseControl(nveauGroup, subScene3D, stage);
+							break;
 						}
-					}
 
-				});
-				
-			}
-		
+					}
+				}
+
+			});
+
+		}
+
 
 
 		subScene3D.setOnMouseDragged(event -> {
-			//angleX.set(anchorAngleX - anchorY - event.getSceneY());
 			angleY.set(anchorAngleY + anchorX - event.getSceneX());
 		});	
 		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
 			double delta = event.getDeltaY();
 			node.translateZProperty().set(node.getTranslateZ() - delta);
+			node.translateYProperty().set(node.getTranslateY()-delta);
 		});
 	}
-
-	public void switchToPageJeu(ActionEvent event) throws IOException{
+	public SmartGroup nouveauLego() {
 		Cylinder cylindre = prepareCylinder();
 		Cylinder cylindre2 = prepareCylinder();
 		Box box = prepareBox();
-		Cylinder cylindre3 = prepareCylinder();
-		Cylinder cylindre4 = prepareCylinder();
-		Box box2 = prepareBox();
 		SmartGroup group = new SmartGroup();
-		SmartGroup group2 = new SmartGroup();
 		group.getChildren().add(box);
 		group.getChildren().add(cylindre);
 		group.getChildren().add(cylindre2);
-		group2.getChildren().add(box2);
-		group2.getChildren().add(cylindre3);
-		group2.getChildren().add(cylindre4);
-		ensembleGroup.getChildren().add(group);
-		ensembleGroup.getChildren().add(group2);
+		plateau_jeu.getChildren().add(group);
 		box.translateYProperty().set(10);
 		cylindre.translateXProperty().set(25);
 		cylindre.translateYProperty().set(-8);
 		cylindre2.translateXProperty().set(-25);
 		cylindre2.translateYProperty().set(-8);
-		box2.translateYProperty().set(10);
-		cylindre3.translateXProperty().set(25);
-		cylindre3.translateYProperty().set(-8);
-		cylindre4.translateXProperty().set(-25);
-		cylindre4.translateYProperty().set(-8);
-		Camera camera = new PerspectiveCamera();
-		SubScene subScene3D = new SubScene(ensembleGroup, WIDTH, HEIGHT,true,null);
+		return group;
+	}
+
+	public void switchToPageJeu(ActionEvent event) throws IOException{
+		SmartGroup group = nouveauLego();
+		SmartGroup group2 = nouveauLego();
+		PhongMaterial material1 = new PhongMaterial();
+		material1.setDiffuseColor(Color.GRAY);
+		Box sol = new Box(cote,20,cote);
+		sol.setMaterial(material1);
+		SmartGroup plateau = new SmartGroup();
+		plateau.getChildren().add(sol);
+		plateau_jeu.getChildren().add(plateau);
+		camera.translateZProperty().set(-1 * cote);
+		camera.translateYProperty().set(-100);
+		camera.setRotationAxis(Rotate.X_AXIS);
+		camera.setRotate(-30);
+		SubScene subScene3D = new SubScene(plateau_jeu, WIDTH, HEIGHT,true,null);
 		subScene3D.setCamera(camera);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../vues/VuePageJeu.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -181,10 +168,13 @@ public class ControleurPageAcceuil {
 		group2.translateXProperty().set(WIDTH/1.5);
 		group2.translateYProperty().set(HEIGHT/1.5);
 		group2.translateZProperty().set(-800);
-		pile1.add(ensembleGroup.getChildren().get(0));
-		pile2.add(ensembleGroup.getChildren().get(1));
-		for (int i=0;i<ensembleGroup.getChildren().size();i++) {
-			initMouseControl(ensembleGroup.getChildren().get(i), subScene3D, stage);
+		plateau.translateXProperty().set(WIDTH/2);
+		plateau.translateYProperty().set((HEIGHT/1.5) + 30);
+		plateau.translateZProperty().set(-800);
+		pile1.add(plateau_jeu.getChildren().get(1));
+		pile2.add(plateau_jeu.getChildren().get(2));
+		for (int i=0;i<plateau_jeu.getChildren().size();i++) {
+			initMouseControl(plateau_jeu.getChildren().get(i), subScene3D, stage);
 		}
 		stage.setTitle("Page jeu");
 		stage.setScene(scene);
