@@ -89,7 +89,7 @@ public class ControleurPageAcceuil {
 		});
 		plateau_jeu_liste.add(pile1);
 		plateau_jeu_liste.add(pile2);
-		for (int i=0; i<plateau_jeu.getChildren().size();i++) {
+		for (int i=1; i<plateau_jeu.getChildren().size();i++) {
 			Node lego = plateau_jeu.getChildren().get(i);
 			double X = plateau_jeu.getChildren().get(i).getTranslateX();
 			plateau_jeu.getChildren().get(i).setOnMouseClicked(event1 ->{
@@ -98,7 +98,8 @@ public class ControleurPageAcceuil {
 						if ((plateau_jeu_liste.get(j)).get(0).getTranslateX() == X ) {
 							SmartGroup nveauGroup = nouveauLego();
 							plateau_jeu_liste.get(j).add(lego);
-							
+							nveauGroup.setRotationAxis(Rotate.Y_AXIS);
+							nveauGroup.setRotate((plateau_jeu_liste.get(j)).get(0).getRotate());
 							nveauGroup.translateXProperty().set(X);
 							nveauGroup.translateYProperty().set(plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-1).getTranslateY()-20);
 							nveauGroup.translateZProperty().set(plateau_jeu.getChildren().get(plateau_jeu.getChildren().size()-3).getTranslateZ());
@@ -116,7 +117,17 @@ public class ControleurPageAcceuil {
 
 
 		subScene3D.setOnMouseDragged(event -> {
+			plateau_jeu.setRotationAxis(Rotate.Y_AXIS);
+			for (int l=0; l<plateau_jeu.getChildren().size();l++) {
+				plateau_jeu.getChildren().get(l).setRotationAxis(Rotate.Y_AXIS);
+			}
 			angleY.set(anchorAngleY + anchorX - event.getSceneX());
+			plateau_jeu.setRotate(anchorAngleY + anchorX - event.getSceneX());
+			for (int l=0; l<plateau_jeu.getChildren().size();l++) {
+				plateau_jeu.getChildren().get(l).setRotate(-(anchorAngleY + anchorX - event.getSceneX()));
+			}
+			
+			
 		});	
 		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
 			double delta = event.getDeltaY();
@@ -142,8 +153,6 @@ public class ControleurPageAcceuil {
 	}
 
 	public void switchToPageJeu(ActionEvent event) throws IOException{
-		SmartGroup group = nouveauLego();
-		SmartGroup group2 = nouveauLego();
 		PhongMaterial material1 = new PhongMaterial();
 		material1.setDiffuseColor(Color.GRAY);
 		Box sol = new Box(cote,20,cote);
@@ -151,6 +160,8 @@ public class ControleurPageAcceuil {
 		SmartGroup plateau = new SmartGroup();
 		plateau.getChildren().add(sol);
 		plateau_jeu.getChildren().add(plateau);
+		SmartGroup group = nouveauLego();
+		SmartGroup group2 = nouveauLego();
 		camera.translateZProperty().set(-1 * cote);
 		camera.translateYProperty().set(-100);
 		camera.setRotationAxis(Rotate.X_AXIS);
