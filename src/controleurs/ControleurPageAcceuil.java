@@ -78,6 +78,7 @@ public class ControleurPageAcceuil {
 		return cylindre;
 	}
 
+
 	private void initMouseControl(Node node, SubScene subScene3D, Stage stage) {
 		Rotate yRotate;
 		node.getTransforms().addAll(yRotate = new Rotate(0,Rotate.Y_AXIS));
@@ -87,22 +88,22 @@ public class ControleurPageAcceuil {
 			anchorX = event.getSceneX();
 			anchorAngleY = angleY.get();
 		});
-		plateau_jeu_liste.add(pile1);
-		plateau_jeu_liste.add(pile2);
 		for (int i=1; i<plateau_jeu.getChildren().size();i++) {
 			Node lego = plateau_jeu.getChildren().get(i);
 			double X = plateau_jeu.getChildren().get(i).getTranslateX();
+			double Y = plateau_jeu.getChildren().get(i).getTranslateY();
+			double Z = plateau_jeu.getChildren().get(i).getTranslateZ();
 			plateau_jeu.getChildren().get(i).setOnMouseClicked(event1 ->{
-				for (int j=0; j<2; j++) {
+				for (int j=0; j<plateau_jeu_liste.size(); j++) {
 					for (int k=0; k<plateau_jeu_liste.get(j).size(); k++) {
-						if ((plateau_jeu_liste.get(j)).get(0).getTranslateX() == X ) {
+						if ((plateau_jeu_liste.get(j)).get(0).getTranslateX() == X  && (plateau_jeu_liste.get(j)).get(0).getTranslateZ() == Z ) {
 							SmartGroup nveauGroup = nouveauLego();
 							plateau_jeu_liste.get(j).add(lego);
 							nveauGroup.setRotationAxis(Rotate.Y_AXIS);
 							nveauGroup.setRotate((plateau_jeu_liste.get(j)).get(0).getRotate());
 							nveauGroup.translateXProperty().set(X);
 							nveauGroup.translateYProperty().set(plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-1).getTranslateY()-20);
-							nveauGroup.translateZProperty().set(plateau_jeu.getChildren().get(plateau_jeu.getChildren().size()-3).getTranslateZ());
+							nveauGroup.translateZProperty().set(Z);
 							initMouseControl(nveauGroup, subScene3D, stage);
 							break;
 						}
@@ -111,11 +112,44 @@ public class ControleurPageAcceuil {
 				}
 
 			});
-
 		}
+		plateau_jeu.getChildren().get(0).setOnMouseClicked(event2 ->{
+			double X = 0;
+			double Z = 0;
+			if (event2.isMiddleButtonDown()) {
+				if (event2.getX()<50 && event2.getX()>-50) {
+					X = 700;
+				}
+				if (event2.getX()<=-50) {
+					X = 700 + (int)((event2.getX() - 50)/50)/2 * 100;
+				}
+				if (event2.getX()>=50) {
+					X = 700 + (int)((event2.getX() + 50)/50)/2 * 100;
+				}
+				if (event2.getZ()<25 && event2.getZ()>-25) {
+					Z = -800;
+				}
+				if (event2.getZ()>=25) {
+					Z = -800 + (int) (event2.getZ()/25)/2 * 50;
+				}
+				if (event2.getZ()<=-25) {
+					Z = -800 + (int) (event2.getZ()/25)/2 * 50;
+				}
+				System.out.println((int) (event2.getZ()/25)/2 * 50);
+				SmartGroup lego_nn_pose = nouveauLego();
+				lego_nn_pose.setRotationAxis(Rotate.Y_AXIS);
+				lego_nn_pose.setRotate((plateau_jeu_liste.get(0)).get(0).getRotate());
+				LinkedList<Node> pile_vierge = new LinkedList();
+				plateau_jeu_liste.add(pile_vierge);
+				pile_vierge.add(lego_nn_pose);
+				lego_nn_pose.translateXProperty().set(X);
+				lego_nn_pose.translateYProperty().set(HEIGHT/1.5);
+				lego_nn_pose.translateZProperty().set(Z);
+				initMouseControl(lego_nn_pose, subScene3D, stage);
 
+			}
 
-
+		});
 		subScene3D.setOnMouseDragged(event -> {
 			plateau_jeu.setRotationAxis(Rotate.Y_AXIS);
 			for (int l=0; l<plateau_jeu.getChildren().size();l++) {
@@ -126,8 +160,8 @@ public class ControleurPageAcceuil {
 			for (int l=0; l<plateau_jeu.getChildren().size();l++) {
 				plateau_jeu.getChildren().get(l).setRotate(-(anchorAngleY + anchorX - event.getSceneX()));
 			}
-			
-			
+
+
 		});	
 		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
 			double delta = event.getDeltaY();
@@ -153,6 +187,8 @@ public class ControleurPageAcceuil {
 	}
 
 	public void switchToPageJeu(ActionEvent event) throws IOException{
+		plateau_jeu_liste.add(pile1);
+		plateau_jeu_liste.add(pile2);
 		PhongMaterial material1 = new PhongMaterial();
 		material1.setDiffuseColor(Color.GRAY);
 		Box sol = new Box(cote,20,cote);
@@ -176,7 +212,7 @@ public class ControleurPageAcceuil {
 		group.translateXProperty().set(WIDTH/2);
 		group.translateYProperty().set(HEIGHT/1.5);
 		group.translateZProperty().set(-800);
-		group2.translateXProperty().set(WIDTH/1.5);
+		group2.translateXProperty().set(900);
 		group2.translateYProperty().set(HEIGHT/1.5);
 		group2.translateZProperty().set(-800);
 		plateau.translateXProperty().set(WIDTH/2);
