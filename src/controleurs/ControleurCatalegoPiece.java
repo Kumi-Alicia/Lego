@@ -66,7 +66,6 @@ public class ControleurCatalegoPiece implements Initializable{
 	public ControleurCatalegoPiece() throws IOException {
 		this.legolist=new CatalegoPiece();
 		this.legolist.dicoInitial();
-		System.out.println(this.legolist);
 	}
 
 

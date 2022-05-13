@@ -31,7 +31,7 @@ public class CatalegoPiece extends TreeMap<String,Lego>{
 		dicoInitial();
 		TreeMap<String,Lego> nouveauDico = new TreeMap<String,Lego>();
 		for(String nom : super.keySet()) {
-			if(nom.contains(mot.toLowerCase())) {
+			if(nom.toLowerCase().contains(mot.toLowerCase())) {
 				nouveauDico.put(nom, super.get(nom));
 			}
 		}
