@@ -116,7 +116,7 @@ public class ControleurPageAcceuil {
 		plateau_jeu.getChildren().get(0).setOnMouseClicked(event2 ->{
 			double X = 0;
 			double Z = 0;
-			if (event2.isMiddleButtonDown()) {
+			if (event2.isAltDown()) {
 				if (event2.getX()<50 && event2.getX()>-50) {
 					X = 700;
 				}
