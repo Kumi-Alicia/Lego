@@ -46,26 +46,29 @@ public class Controleur3D {
 	public double anchorAngleY = 0;
 	public int cote = 900;
 	public double valeur_rotate = 90;
-	public SmartGroup plateau_jeu = new SmartGroup();
+	public static SmartGroup plateau_jeu = new SmartGroup();
 	Camera camera = new PerspectiveCamera();
 	LinkedList<Node> pile1 = new LinkedList();
 	public static LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
 	public final DoubleProperty angleY = new SimpleDoubleProperty(0);
-	public static String selec="test";
+	public static String selecNom="Rectangle bleu 1";
+	public static Color selecCouleur=Color.ROYALBLUE;
+	public static int selecTaille=1;
+	
 	public Controleur3D() {
 
 	}
 	
 	public Box prepareBox() {
 		PhongMaterial material = new PhongMaterial();
-		material.setDiffuseColor(Color.ROYALBLUE);
+		material.setDiffuseColor(this.selecCouleur);
 		if (valeur_rotate == 0) {
-			Box box = new Box(100,20,50);
+			Box box = new Box(50+50*this.selecTaille,20,50);
 			box.setMaterial(material);
 			return box;
 		}
 		else {
-			Box box = new Box(50,20,100);
+			Box box = new Box(50,20,50+50*this.selecTaille);
 			box.setMaterial(material);
 			return box;
 		}
@@ -73,7 +76,7 @@ public class Controleur3D {
 	}
 	public Cylinder prepareCylinder() {
 		PhongMaterial material = new PhongMaterial();
-		material.setDiffuseColor(Color.ROYALBLUE);
+		material.setDiffuseColor(this.selecCouleur);
 		Cylinder cylindre = new Cylinder(15,16,10);
 		cylindre.setMaterial(material);
 		return cylindre;
@@ -198,11 +201,10 @@ public class Controleur3D {
 			node.translateZProperty().set(node.getTranslateZ() - delta);
 			node.translateYProperty().set(node.getTranslateY()-delta);
 		});	
-		System.out.println(this.selec);
 	}
 	public SmartGroup nouveauLego() {
 		Cylinder cylindre = prepareCylinder();
-		Cylinder cylindre2 = prepareCylinder();
+		Cylinder cylindre2 = prepareCylinder();;
 		Box box = prepareBox();
 		SmartGroup group = new SmartGroup();
 		group.getChildren().add(box);
@@ -285,6 +287,8 @@ public class Controleur3D {
 		stage.setScene(new Scene(root1));  
 		stage.showAndWait();
 		ControleurCatalegoPiece catalego = fxmlLoader.getController();
-		this.selec=catalego.choixlego;
+		this.selecNom=catalego.choixlegonom;
+		this.selecCouleur=catalego.choixlegocouleur;
+		this.selecTaille=catalego.choixlegotaille;
     }
 }

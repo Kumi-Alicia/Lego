@@ -70,10 +70,9 @@ public class ControleurCatalegoPiece implements Initializable{
 	@FXML
 	private ComboBox tri;
 	
-	@FXML
-    private Button addbtn;
-	
-	public String choixlego;
+	public String choixlegonom;
+	public Color choixlegocouleur;
+	public int choixlegotaille;
 	
 	public ArrayList<Lego> legoliste = new ArrayList<Lego>();
 	public CatalegoPiece legolist;
@@ -86,7 +85,6 @@ public class ControleurCatalegoPiece implements Initializable{
 	
 	@FXML
 	void ajouter(ActionEvent event) throws IOException {
-		this.choixlego=this.nomLegoLabel.getText();
 		this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		this.stage.close();
 		
@@ -219,8 +217,11 @@ public class ControleurCatalegoPiece implements Initializable{
 	}
 	public void setChoixLego(Lego lego) {
 		this.nomLegoLabel.setText(lego.nom);
+		this.choixlegonom=lego.nom;
+		this.choixlegocouleur=lego.couleurLeg;
+		this.choixlegotaille=lego.taille;
 		Image image = new Image(getClass().getResourceAsStream(lego.imageLego));
-		this.carteLegoGauche.setStyle("-fx-background-color: #"+lego.couleur+";\r\n"
+		this.carteLegoGauche.setStyle("-fx-background-color: #"+lego.couleurCat+";\r\n"
 				+ "    -fx-background-radius: 30;");
 		this.legoImage.setImage(image);
 	}

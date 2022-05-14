@@ -1,8 +1,16 @@
- Carre bleu,/images/carrebleu.png,A2F0F0
- Carre vert,/images/carrevert.png,A2F0A3
- Carre gris,/images/carregris.png,F6F6F6
- Carre jaune,/images/carrejaune.png,FFF978
- Rectangle bleu,/images/rectanglebleu.png,A2F0F0
- Rectangle jaune,/images/rectanglejaune.png,FFF978
- Rectangle rouge,/images/rectanglerouge.jpg,FD4040
- Rectangle vert,/images/rectanglevert.jpg,A2F0A3
+ Carre bleu 1,/images/carrebleu1.png,A2F0F0,1,FF0000
+ Carre vert 1,/images/carrevert1.png,A2F0A3,1,1BFF00
+ Carre gris 1,/images/carregris1.png,F6F6F6,1,DDDDD9
+ Carre jaune 1,/images/carrejaune1.png,FFF978,1,F7FF00
+ Carre bleu 2,/images/carrebleu1.png,A2F0F0,2,FF0000
+ Carre vert 2,/images/carrevert1.png,A2F0A3,2,1BFF00
+ Carre gris 2,/images/carregris1.png,F6F6F6,2,DDDDD9
+ Carre jaune 2,/images/carrejaune1.png,FFF978,2,F7FF00
+ Rectangle bleu 1,/images/rectanglebleu1.png,A2F0F0,1,0032FF
+ Rectangle jaune 1,/images/rectanglejaune1.png,FFF978,1,F7FF00
+ Rectangle rouge 1,/images/rectanglerouge1.jpg,FD4040,1,FF0000
+ Rectangle vert 1,/images/rectanglevert1.jpg,A2F0A3,1,1BFF00
+ Rectangle bleu 2,/images/rectanglebleu1.png,A2F0F0,2,0032FF
+ Rectangle jaune 2,/images/rectanglejaune1.png,FFF978,2,F7FF00
+ Rectangle rouge 2,/images/rectanglerouge1.jpg,FD4040,2,FF0000
+ Rectangle vert 2,/images/rectanglevert1.jpg,A2F0A3,2,1BFF00

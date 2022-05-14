@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.TreeMap;
 
+import javafx.scene.paint.Color;
+
 public class CatalegoPiece extends TreeMap<String,Lego>{
 	public int tailleDicoInit=0;
 	public void dicoInitial() throws IOException {
@@ -18,10 +20,10 @@ public class CatalegoPiece extends TreeMap<String,Lego>{
         {	
             lecture = br.readLine().split(",");
             if (lecture[0].contains("Carre")){
-            	super.put(lecture[0],new Carre(lecture[0],lecture[1],lecture[2]));
+            	super.put(lecture[0],new Carre(lecture[0],lecture[1],lecture[2],Integer.valueOf(lecture[3]),Color.web(lecture[4])));
             }
             else if (lecture[0].contains("Rectangle")) {
-            	super.put(lecture[0],new Rectangle(lecture[0],lecture[1],lecture[2]));
+            	super.put(lecture[0],new Rectangle(lecture[0],lecture[1],lecture[2],Integer.valueOf(lecture[3]),Color.web(lecture[4])));
             } 
         }
 		this.tailleDicoInit=super.size();

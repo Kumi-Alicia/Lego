@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurCatalegoPiece">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurCatalegoPiece">
    <children>
       <BorderPane layoutX="-4.0" prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -27,9 +27,9 @@
                <children>
                   <HBox prefHeight="110.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="117.0" prefWidth="444.0" text="Catalego" textFill="#8e8a8a">
+                        <Label alignment="CENTER" prefHeight="118.0" prefWidth="425.0" text="Catalego" textFill="WHITE">
                            <font>
-                              <Font name="Cambria Bold" size="54.0" />
+                              <Font name="Cambria Bold" size="71.0" />
                            </font>
                         </Label>
                      </children>
@@ -71,9 +71,9 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="152.0" prefWidth="326.0">
                            <children>
-                              <Label fx:id="nomLegoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="107.0" prefWidth="324.0" text="Rectangle Vert" textFill="WHITE">
+                              <Label fx:id="nomLegoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="136.0" prefWidth="324.0" text="Rectangle Vert" textFill="WHITE">
                                  <font>
-                                    <Font name="Cambria Bold" size="34.0" />
+                                    <Font name="Cambria Bold" size="35.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets />
@@ -122,29 +122,29 @@
          <center>
             <VBox prefHeight="810.0" prefWidth="894.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="103.0" prefWidth="834.0">
+                  <HBox prefHeight="83.0" prefWidth="882.0">
                      <VBox.margin>
                         <Insets left="20.0" right="5.0" />
                      </VBox.margin>
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="73.0" prefWidth="118.0" text="Trier par" textFill="#857f7f">
+                        <Label alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="119.0" text="Trier par" textFill="#857f7f">
                            <font>
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="202.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="194.0">
                            <children>
                               <ComboBox fx:id="tri" onAction="#selectiontri" prefHeight="26.0" prefWidth="124.0" />
                            </children>
                            <HBox.margin>
-                              <Insets bottom="25.0" left="10.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER" prefHeight="785.0" prefWidth="867.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@../style/style.css">
+                        <ScrollPane fx:id="scroll" prefHeight="755.0" prefWidth="787.0" styleClass="transparent" stylesheets="@../style/style.css">
                            <content>
                               <GridPane fx:id="grid" prefHeight="2.0" prefWidth="23.0">
                                  <rowConstraints>
@@ -153,10 +153,13 @@
                               </GridPane>
                            </content>
                            <HBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="5.0" />
                            </HBox.margin>
                         </ScrollPane>
                      </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
