@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurCatalegoPiece">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurCatalegoPiece">
    <children>
       <BorderPane layoutX="-4.0" prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -122,7 +122,7 @@
          <center>
             <VBox prefHeight="810.0" prefWidth="894.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="103.0" prefWidth="1000.0">
+                  <HBox prefHeight="103.0" prefWidth="834.0">
                      <VBox.margin>
                         <Insets left="20.0" right="5.0" />
                      </VBox.margin>
@@ -140,11 +140,6 @@
                               <Insets bottom="25.0" left="10.0" />
                            </HBox.margin>
                         </HBox>
-                        <Button fx:id="btnx" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToCatalego" text="X">
-                           <HBox.margin>
-                              <Insets left="550.0" top="10.0" />
-                           </HBox.margin>
-                        </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -166,6 +161,13 @@
                </children>
             </VBox>
          </center>
+         <right>
+            <HBox alignment="TOP_RIGHT" prefHeight="810.0" prefWidth="11.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnx1" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToCatalego" prefHeight="22.0" prefWidth="24.0" text="X" />
+               </children>
+            </HBox>
+         </right>
       </BorderPane>
    </children>
 </AnchorPane>
