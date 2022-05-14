@@ -135,7 +135,6 @@ public class ControleurPageAcceuil {
 				if (event2.getZ()<=-25) {
 					Z = -800 + (int) (event2.getZ()/25)/2 * 50;
 				}
-				System.out.println((int) (event2.getZ()/25)/2 * 50);
 				SmartGroup lego_nn_pose = nouveauLego();
 				lego_nn_pose.setRotationAxis(Rotate.Y_AXIS);
 				lego_nn_pose.setRotate((plateau_jeu_liste.get(0)).get(0).getRotate());
@@ -143,12 +142,17 @@ public class ControleurPageAcceuil {
 				plateau_jeu_liste.add(pile_vierge);
 				pile_vierge.add(lego_nn_pose);
 				lego_nn_pose.translateXProperty().set(X);
-				lego_nn_pose.translateYProperty().set(HEIGHT/1.5);
-				lego_nn_pose.translateZProperty().set(Z);
+				lego_nn_pose.translateYProperty().set(plateau_jeu.getChildren().get(0).getTranslateY() - 30);
+				lego_nn_pose.translateZProperty().set(Z + plateau_jeu.getChildren().get(0).getTranslateZ() + 800);
 				initMouseControl(lego_nn_pose, subScene3D, stage);
 
 			}
-
+			
+		});
+		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
+			double delta = event.getDeltaY();
+			node.translateZProperty().set(node.getTranslateZ() - delta);
+			node.translateYProperty().set(node.getTranslateY()-delta);
 		});
 		subScene3D.setOnMouseDragged(event -> {
 			plateau_jeu.setRotationAxis(Rotate.Y_AXIS);
@@ -163,11 +167,7 @@ public class ControleurPageAcceuil {
 
 
 		});	
-		stage.addEventHandler(ScrollEvent.SCROLL, event -> {
-			double delta = event.getDeltaY();
-			node.translateZProperty().set(node.getTranslateZ() - delta);
-			node.translateYProperty().set(node.getTranslateY()-delta);
-		});
+		
 	}
 	public SmartGroup nouveauLego() {
 		Cylinder cylindre = prepareCylinder();
