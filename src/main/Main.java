@@ -32,7 +32,7 @@ import controleurs.Controleur3D;
 import controleurs.ControleurCatalego;
 import controleurs.ControleurCatalegoPiece;
 import controleurs.ControleurPageAcceuil;
-import controleurs.ControleurPageJeu;
+
 
 
 public class Main extends Application {
@@ -41,7 +41,6 @@ public class Main extends Application {
 	public void start(Stage Catalego) {
 		try {
 			ControleurPageAcceuil cAccueil = new ControleurPageAcceuil();
-			ControleurPageJeu cJeu = new ControleurPageJeu();
 			ControleurCatalego cCatalego = new ControleurCatalego();
 			ControleurCatalegoPiece cPiece = new ControleurCatalegoPiece();
 			Controleur3D c3D = new Controleur3D();
