@@ -37,7 +37,6 @@ public class Controleur3D {
 	public SmartGroup plateau_jeu = new SmartGroup();
 	Camera camera = new PerspectiveCamera();
 	LinkedList<Node> pile1 = new LinkedList();
-	LinkedList<Node> pile2 = new LinkedList();
 	public LinkedList<LinkedList<Node>> plateau_jeu_liste;
 	public final DoubleProperty angleY = new SimpleDoubleProperty(0);
 	
@@ -76,7 +75,6 @@ public class Controleur3D {
 		for (int i=1; i<plateau_jeu.getChildren().size();i++) {
 			Node lego = plateau_jeu.getChildren().get(i);
 			double X = plateau_jeu.getChildren().get(i).getTranslateX();
-			double Y = plateau_jeu.getChildren().get(i).getTranslateY();
 			double Z = plateau_jeu.getChildren().get(i).getTranslateZ();
 			plateau_jeu.getChildren().get(i).setOnMouseClicked(event1 ->{
 				for (int j=0; j<plateau_jeu_liste.size(); j++) {
@@ -173,16 +171,14 @@ public class Controleur3D {
 	
 	public void initialisation(ActionEvent event) throws IOException {
 		plateau_jeu_liste.add(pile1);
-		plateau_jeu_liste.add(pile2);
 		PhongMaterial material1 = new PhongMaterial();
 		material1.setDiffuseColor(Color.GRAY);
-		Box sol = new Box(cote,20,cote);
+		Box sol = new Box(cote - 1,20,cote - 50);
 		sol.setMaterial(material1);
 		SmartGroup plateau = new SmartGroup();
 		plateau.getChildren().add(sol);
 		plateau_jeu.getChildren().add(plateau);
 		SmartGroup group = nouveauLego();
-		SmartGroup group2 = nouveauLego();
 		camera.translateZProperty().set(-1 * cote);
 		camera.translateYProperty().set(-100);
 		camera.setRotationAxis(Rotate.X_AXIS);
@@ -197,14 +193,10 @@ public class Controleur3D {
 		group.translateXProperty().set(WIDTH/2);
 		group.translateYProperty().set(HEIGHT/1.5);
 		group.translateZProperty().set(-800);
-		group2.translateXProperty().set(900);
-		group2.translateYProperty().set(HEIGHT/1.5);
-		group2.translateZProperty().set(-800);
 		plateau.translateXProperty().set(WIDTH/2);
 		plateau.translateYProperty().set((HEIGHT/1.5) + 30);
 		plateau.translateZProperty().set(-800);
 		pile1.add(plateau_jeu.getChildren().get(1));
-		pile2.add(plateau_jeu.getChildren().get(2));
 		for (int i=0;i<plateau_jeu.getChildren().size();i++) {
 			initMouseControl(plateau_jeu.getChildren().get(i), subScene3D, stage);
 		}
