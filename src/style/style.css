@@ -49,6 +49,9 @@
 	-fx-text-fill: black;
 	-fx-font-weight: bold;
 	-fx-font-family:Cambria;
+	-fx-background-color: #FFFFFF;
+    	-fx-background-radius: 100;
+	-fx-font-size:20;
 }
 
 .police-page-catalego{
