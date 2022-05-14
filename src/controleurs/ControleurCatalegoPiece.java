@@ -25,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -45,6 +46,9 @@ import javafx.stage.Stage;
 import main.MyListener;
 
 public class ControleurCatalegoPiece implements Initializable{
+	public Stage stage;
+	public Scene scene;
+	public Parent root;
 	@FXML
 	private VBox carteLegoGauche;
 
@@ -65,22 +69,27 @@ public class ControleurCatalegoPiece implements Initializable{
 
 	@FXML
 	private ComboBox tri;
-
+	
+	@FXML
+    private Button addbtn;
+	
+	public String choixlego;
+	
 	public ArrayList<Lego> legoliste = new ArrayList<Lego>();
 	public CatalegoPiece legolist;
 	public MyListener myListener;
-	public Stage stage;
-	public Scene scene;
-	public Parent root;
 	
 	public ControleurCatalegoPiece() throws IOException {
 		this.legolist=new CatalegoPiece();
 		this.legolist.dicoInitial();
 	}
+	
 	@FXML
 	void ajouter(ActionEvent event) throws IOException {
-		Controleur3D c = new Controleur3D();
-		c.initialisation(event);
+		this.choixlego=this.nomLegoLabel.getText();
+		this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		this.stage.close();
+		
 	}
 
 	@FXML
@@ -261,11 +270,8 @@ public class ControleurCatalegoPiece implements Initializable{
 	}
 
 	public void switchToCatalego(ActionEvent event) throws IOException{
-		Parent root = FXMLLoader.load(getClass().getResource("../vues/VueCatalego.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		this.stage.close();
 	}
 
 }

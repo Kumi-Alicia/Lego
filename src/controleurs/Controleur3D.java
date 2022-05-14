@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Camera;
@@ -15,6 +16,7 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -36,24 +38,22 @@ public class Controleur3D {
 	private Button btncatalogue;
 	private Button btnsauvegarder;
 	private Button btnrecharger;
-
+	
 	public static final float WIDTH = 1400;
 	public static final float HEIGHT = 800;
 
 	public double anchorX;
 	public double anchorAngleY = 0;
 	public int cote = 900;
-	public SmartGroup plateau_jeu = new SmartGroup();
+	
 	Camera camera = new PerspectiveCamera();
 	LinkedList<Node> pile1 = new LinkedList();
-	public LinkedList<LinkedList<Node>> plateau_jeu_liste;
+	public static LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
+	public static SmartGroup plateau_jeu = new SmartGroup();
 	public final DoubleProperty angleY = new SimpleDoubleProperty(0);
-	
+	public static String selec="test";
 	public Controleur3D() {
-		this.plateau_jeu_liste= new LinkedList<LinkedList<Node>>();
-	}
-	public Controleur3D(LinkedList<LinkedList<Node>> l) {
-		this.plateau_jeu_liste=l;
+
 	}
 	
 	public Box prepareBox() {
@@ -159,7 +159,8 @@ public class Controleur3D {
 			double delta = event.getDeltaY();
 			node.translateZProperty().set(node.getTranslateZ() - delta);
 			node.translateYProperty().set(node.getTranslateY()-delta);
-		});
+		});	
+		System.out.println(this.selec);
 	}
 	public SmartGroup nouveauLego() {
 		Cylinder cylindre = prepareCylinder();
@@ -222,11 +223,14 @@ public class Controleur3D {
 		stage.show();
 	}
 	
-	public void switchToCatalego(ActionEvent event) throws IOException{
-		Parent root = FXMLLoader.load(getClass().getResource("../vues/VueCatalego.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
+    @FXML
+    public void switchToCatalego(MouseEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../vues/VueCatalegoPiece.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));  
+		stage.showAndWait();
+		ControleurCatalegoPiece catalego = fxmlLoader.getController();
+		this.selec=catalego.choixlego;
+    }
 }

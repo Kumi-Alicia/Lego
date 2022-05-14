@@ -5,6 +5,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import modeles.SmartGroup;
 import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -29,7 +30,6 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import controleurs.Controleur3D;
-import controleurs.ControleurCatalego;
 import controleurs.ControleurCatalegoPiece;
 import controleurs.ControleurPageAcceuil;
 
@@ -41,7 +41,6 @@ public class Main extends Application {
 	public void start(Stage Catalego) {
 		try {
 			ControleurPageAcceuil cAccueil = new ControleurPageAcceuil();
-			ControleurCatalego cCatalego = new ControleurCatalego();
 			ControleurCatalegoPiece cPiece = new ControleurCatalegoPiece();
 			Controleur3D c3D = new Controleur3D();
 			
