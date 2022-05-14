@@ -15,18 +15,10 @@
          <left>
             <VBox alignment="TOP_CENTER" prefHeight="856.0" prefWidth="350.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="237.0" prefWidth="348.0" style="-fx-background-color: white;">
+                  <HBox alignment="TOP_RIGHT" prefHeight="141.0" prefWidth="350.0" style="-fx-background-color: white;" />
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="963.0" prefWidth="350.0" style="-fx-background-color: white;">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/carrevert.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <HBox alignment="BOTTOM_LEFT" prefHeight="605.0" prefWidth="350.0" style="-fx-background-color: white;">
-                     <children>
-                        <ImageView fitHeight="404.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="291.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/tasdelegos.png" />
                            </image>
@@ -48,16 +40,16 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="207.0" prefWidth="615.0" style="-fx-background-color: #FFD733;">
+                  <HBox alignment="CENTER" prefHeight="270.0" prefWidth="615.0" style="-fx-background-color: #FFD733;">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToPageJeu" prefHeight="193.0" prefWidth="599.0" style="-fx-background-color: #FFD733;" styleClass="titre-page-accueuil" stylesheets="@../style/style.css" text="Nouveau" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#switchToPageJeu" prefHeight="245.0" prefWidth="599.0" style="-fx-background-color: #FFD733;" styleClass="titre-page-accueuil" stylesheets="@../style/style.css" text="Nouveau" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="31.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="217.0" prefWidth="555.0" style="-fx-background-color: green;">
+                  <HBox alignment="CENTER" prefHeight="258.0" prefWidth="615.0" style="-fx-background-color: green;">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="191.0" prefWidth="547.0" style="-fx-background-color: green;" styleClass="titre-page-accueuil" stylesheets="@../style/style.css" text="Charger" textFill="WHITE">
                            <font>
@@ -66,7 +58,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="202.0" prefWidth="615.0" style="-fx-background-color: blue;">
+                  <HBox alignment="CENTER" prefHeight="230.0" prefWidth="615.0" style="-fx-background-color: blue;">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="171.0" prefWidth="547.0" style="-fx-background-color: blue; -fx-border-width: 2;" styleClass="titre-page-accueuil" stylesheets="@../style/style.css" text="Tuto" textFill="WHITE">
                            <font>
