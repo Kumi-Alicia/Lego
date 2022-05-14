@@ -13,7 +13,7 @@
 }
 
 .bar-gauche{
-    -fx-background-color: #D3D3D3;
+    -fx-background-color: #515151;	
 }
 
 .ombre-recherche{
@@ -34,7 +34,7 @@
 	-fx-background-color: red;
 	-fx-text-fill: white;
 	-fx-font-weight: bold;
-	
+	-fx-font-family:Cambria;
 	-fx-font-size:64;
 }
 
@@ -43,4 +43,29 @@
 .lego-catalego{
 	-fx-background-color: #FFFFFF;
         -fx-background-radius: 30;
+}
+
+.police-page-jeu{
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+	-fx-font-family:Cambria;
+	-fx-background-color: #FFFFFF;
+    	-fx-background-radius: 100;
+	-fx-font-size:20;
+}
+
+.police-page-catalego{
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+	-fx-font-family:Cambria;
+	-fx-font-size:64;
+}
+
+.add-btn-catalego{
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+	-fx-font-family:Cambria;
+	-fx-font-size:64;
+    	-fx-background-color: #FFFFFF;
+    	-fx-background-radius: 100;
 }
