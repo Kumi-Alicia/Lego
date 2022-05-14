@@ -121,14 +121,14 @@ public class Controleur3D {
 			double Z = -800;
 			if (event2.isAltDown()) {
 				if (valeur_rotate == 0) {
-					if (event2.getX()<50 && event2.getX()>-50) {
+					if (event2.getX()<25 && event2.getX()>-25) {
 						X = 700;
 					}
-					if (event2.getX()<=-50) {
-						X = 700 + (int)((event2.getX() - 50)/50)/2 * 100;
+					if (event2.getX()<=-25) {
+						X = 700 + (int)((event2.getX() - 25)/25)/2 * 50;
 					}
-					if (event2.getX()>=50) {
-						X = 700 + (int)((event2.getX() + 50)/50)/2 * 100;
+					if (event2.getX()>=25) {
+						X = 700 + (int)((event2.getX() + 25)/25)/2 * 50;
 					}
 					if (event2.getZ()<25 && event2.getZ()>-25) {
 						Z = -800;
@@ -150,16 +150,19 @@ public class Controleur3D {
 					if (event2.getX()<=-25) {
 						X = 650 + (int) (event2.getX()/25)/2 * 50;
 					}
-					if (event2.getZ()<50 && event2.getZ()>-50) {
+					if (event2.getZ()<25 && event2.getZ()>-25) {
 						Z = -800;
 					}
-					if (event2.getZ()<=-50 && event2.getZ()>-350) {
-						Z = -800 + (int)((event2.getZ() - 50)/50)/2 * 100;
+					if (event2.getZ()<=-25 && event2.getZ()>-375) {
+						Z = -800 + (int)((event2.getZ() - 25)/25)/2 * 50;
 					}
-					if (event2.getZ()>=50) {
-						Z = -800 + (int)((event2.getZ() + 50)/50)/2 * 100;
+					if (event2.getZ()<=-375 && event2.getZ()>=-425) {
+						Z = -800 + (int)((-375)/25)/2 * 50;
 					}
-					System.out.println(event2.getZ());
+					if (event2.getZ()>=25) {
+						Z = -800 + (int)((event2.getZ() + 25)/25)/2 * 50;
+					}
+					System.out.println(event2.getX());
 				}
 				SmartGroup lego_nn_pose = nouveauLego();
 				lego_nn_pose.setRotationAxis(Rotate.Y_AXIS);
