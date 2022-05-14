@@ -24,8 +24,11 @@ import javafx.scene.shape.Shape3D;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
+
+import java.util.LinkedList;
 import java.util.Random;
 
+import controleurs.Controleur3D;
 import controleurs.ControleurCatalego;
 import controleurs.ControleurCatalegoPiece;
 import controleurs.ControleurPageAcceuil;
@@ -41,11 +44,13 @@ public class Main extends Application {
 			ControleurPageJeu cJeu = new ControleurPageJeu();
 			ControleurCatalego cCatalego = new ControleurCatalego();
 			ControleurCatalegoPiece cPiece = new ControleurCatalegoPiece();
+			Controleur3D c3D = new Controleur3D();
 			
 			Parent root = FXMLLoader.load(getClass().getResource("../vues/VuePageAcceuil.fxml"));
 			Scene scene = new Scene(root);
 			Catalego.setScene(scene);
 			Catalego.show();	
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
