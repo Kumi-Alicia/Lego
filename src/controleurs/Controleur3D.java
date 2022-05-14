@@ -278,7 +278,7 @@ public class Controleur3D {
 	}
 	
     @FXML
-    public void switchToCatalego(MouseEvent event) throws IOException {
+    public void switchToCatalego(ActionEvent event)  throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../vues/VueCatalegoPiece.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 		Stage stage = new Stage();
