@@ -100,7 +100,7 @@
                            </VBox.margin></HBox>
                         <HBox alignment="CENTER" prefHeight="65.0" prefWidth="312.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="280.0" styleClass="add-btn" stylesheets="@../style/style.css" text="AJOUTER LE LEGO" textFill="#828282">
+                              <Button mnemonicParsing="false" onAction="#ajouter" prefHeight="47.0" prefWidth="280.0" styleClass="add-btn" stylesheets="@../style/style.css" text="AJOUTER LE LEGO" textFill="#828282">
                                  <HBox.margin>
                                     <Insets bottom="20.0" top="20.0" />
                                  </HBox.margin>
