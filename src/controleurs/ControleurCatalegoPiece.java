@@ -7,8 +7,10 @@ import modeles.Rectangle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+import modeles.SmartGroup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,9 +19,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Camera;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -31,6 +36,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Box;
+import javafx.scene.shape.Cylinder;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import main.MyListener;
 
@@ -62,12 +72,16 @@ public class ControleurCatalegoPiece implements Initializable{
 	public Stage stage;
 	public Scene scene;
 	public Parent root;
-
+	
 	public ControleurCatalegoPiece() throws IOException {
 		this.legolist=new CatalegoPiece();
 		this.legolist.dicoInitial();
 	}
-
+	@FXML
+	void ajouter(ActionEvent event) throws IOException {
+		Controleur3D c = new Controleur3D();
+		c.initialisation(event);
+	}
 
 	@FXML
 	void selectiontri(ActionEvent event) {

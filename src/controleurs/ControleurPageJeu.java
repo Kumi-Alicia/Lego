@@ -1,6 +1,7 @@
 package controleurs;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +25,7 @@ public class ControleurPageJeu {
 	public Stage stage;
 	public Scene scene;
 	public Parent root;
-	
+
 	public void switchToPageAcceuil(ActionEvent event) throws IOException{
 		Parent root = FXMLLoader.load(getClass().getResource("../vues/VuePageAcceuil.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
