@@ -238,7 +238,7 @@ public class Controleur3D {
 		plateau.getChildren().add(sol);
 		plateau_jeu.getChildren().add(plateau);
 		SmartGroup group = nouveauLego();
-		camera.translateZProperty().set(-1 * cote);
+		camera.translateZProperty().set(-1.2 * cote);
 		camera.translateYProperty().set(-100);
 		camera.setRotationAxis(Rotate.X_AXIS);
 		camera.setRotate(-30);
