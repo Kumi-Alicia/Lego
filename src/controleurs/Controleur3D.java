@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Camera;
 import javafx.scene.Node;
@@ -13,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
+import javafx.scene.control.Button;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -27,6 +29,13 @@ public class Controleur3D {
 	public Stage stage;
 	public Scene scene;
 	public Parent root;
+	
+	@FXML
+	private SubScene subScene3D;
+	private Button btnx;
+	private Button btncatalogue;
+	private Button btnsauvegarder;
+	private Button btnrecharger;
 
 	public static final float WIDTH = 1400;
 	public static final float HEIGHT = 800;
@@ -201,6 +210,22 @@ public class Controleur3D {
 			initMouseControl(plateau_jeu.getChildren().get(i), subScene3D, stage);
 		}
 		stage.setTitle("Page jeu");
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void switchToPageAcceuil(ActionEvent event) throws IOException{
+		Parent root = FXMLLoader.load(getClass().getResource("../vues/VuePageAcceuil.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void switchToCatalego(ActionEvent event) throws IOException{
+		Parent root = FXMLLoader.load(getClass().getResource("../vues/VueCatalego.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}

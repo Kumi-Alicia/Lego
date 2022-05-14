@@ -7,18 +7,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Region?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurPageJeu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.Controleur3D">
    <children>
       <BorderPane prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <SubScene fx:id="subScene3D" height="810.0" width="1315.0" BorderPane.alignment="CENTER">
+            <SubScene fx:id="subScene3D" height="763.0" width="1288.0" BorderPane.alignment="CENTER">
               <root>
                 <Region />
               </root>
             </SubScene>
          </center>
          <bottom>
-            <ToolBar prefHeight="40.0" prefWidth="1315.0" BorderPane.alignment="CENTER">
+            <ToolBar prefHeight="40.0" prefWidth="1308.0" BorderPane.alignment="CENTER">
               <items>
                 <Button fx:id="btncatalogue" mnemonicParsing="false" onAction="#switchToCatalego" text="Catalogue" />
                   <Button fx:id="btnsauvegarder" mnemonicParsing="false" text="Sauvegarder" />
