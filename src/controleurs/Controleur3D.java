@@ -31,14 +31,14 @@ public class Controleur3D {
 	public Stage stage;
 	public Scene scene;
 	public Parent root;
-	
+
 	@FXML
 	private SubScene subScene3D;
 	private Button btnx;
 	private Button btncatalogue;
 	private Button btnsauvegarder;
 	private Button btnrecharger;
-	
+
 	public static final float WIDTH = 1400;
 	public static final float HEIGHT = 800;
 
@@ -48,17 +48,16 @@ public class Controleur3D {
 	public double valeur_rotate = 90;
 	public static SmartGroup plateau_jeu = new SmartGroup();
 	Camera camera = new PerspectiveCamera();
-	LinkedList<Node> pile1 = new LinkedList();
 	public static LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
 	public final DoubleProperty angleY = new SimpleDoubleProperty(0);
 	public static String selecNom="Rectangle bleu 1";
 	public static Color selecCouleur=Color.ROYALBLUE;
 	public static int selecTaille=1;
-	
+
 	public Controleur3D() {
 
 	}
-	
+
 	public Box prepareBox() {
 		PhongMaterial material = new PhongMaterial();
 		material.setDiffuseColor(this.selecCouleur);
@@ -72,7 +71,7 @@ public class Controleur3D {
 			box.setMaterial(material);
 			return box;
 		}
-		
+
 	}
 	public Cylinder prepareCylinder() {
 		PhongMaterial material = new PhongMaterial();
@@ -97,23 +96,40 @@ public class Controleur3D {
 			double X = plateau_jeu.getChildren().get(i).getTranslateX();
 			double Z = plateau_jeu.getChildren().get(i).getTranslateZ();
 			plateau_jeu.getChildren().get(i).setOnMouseClicked(event1 ->{
-				for (int j=0; j<plateau_jeu_liste.size(); j++) {
-					for (int k=0; k<plateau_jeu_liste.get(j).size(); k++) {
-						if ((plateau_jeu_liste.get(j)).get(0).getTranslateX() == X  && (plateau_jeu_liste.get(j)).get(0).getTranslateZ() == Z ) {
-							SmartGroup nveauGroup = nouveauLego();
-							plateau_jeu_liste.get(j).add(lego);
-							Node lego_dessous = plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-2);
-							nveauGroup.setRotationAxis(Rotate.Y_AXIS);
-							nveauGroup.setRotate((plateau_jeu_liste.get(j)).get(0).getRotate());
-							nveauGroup.translateXProperty().set(X);
-							nveauGroup.translateYProperty().set(plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-1).getTranslateY()-20);
-							nveauGroup.translateZProperty().set(Z);
-							initMouseControl(nveauGroup, subScene3D, stage);
-							break;
-						}
+				if (event1.isShiftDown()) {
+					for (int j=0; j<plateau_jeu_liste.size(); j++) {
+						for (int k=0; k<plateau_jeu_liste.get(j).size(); k++) {
+							if ((plateau_jeu_liste.get(j)).get(0).getTranslateX() == X  && (plateau_jeu_liste.get(j)).get(0).getTranslateZ() == Z ) {
+								SmartGroup nveauGroup = nouveauLego();
+								plateau_jeu_liste.get(j).add(lego);
+								Node lego_dessous = plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-2);
+								nveauGroup.setRotationAxis(Rotate.Y_AXIS);
+								nveauGroup.setRotate((plateau_jeu_liste.get(j)).get(0).getRotate());
+								nveauGroup.translateXProperty().set(X);
+								nveauGroup.translateYProperty().set(plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-1).getTranslateY()-20);
+								nveauGroup.translateZProperty().set(Z);
+								initMouseControl(nveauGroup, subScene3D, stage);
+								break;
+							}
 
+						}
 					}
 				}
+				if (event1.isControlDown()) {
+					for (int j=0; j<plateau_jeu_liste.size(); j++) {
+						if ((plateau_jeu_liste.get(j)).get(0).getTranslateX() == X  && (plateau_jeu_liste.get(j)).get(0).getTranslateZ() == Z ) {
+							plateau_jeu_liste.get(j).pop();
+							if (plateau_jeu_liste.get(j).isEmpty()) {
+								plateau_jeu_liste.remove(j);
+							}
+							plateau_jeu.getChildren().remove(lego);
+							break;
+
+
+						}
+					}
+				}
+
 
 			});
 		}
@@ -125,11 +141,17 @@ public class Controleur3D {
 					if (event2.getX()<25 && event2.getX()>-25) {
 						X = 700;
 					}
-					if (event2.getX()<=-25) {
+					if (event2.getX()<=-25 && event2.getX()>-425) {
 						X = 700 + (int)((event2.getX() - 25)/25)/2 * 50;
 					}
-					if (event2.getX()>=25) {
+					if (event2.getX()<=-425 && event2.getX()>-451) {
+						X = 700 + (-425/25)/2 * 50;
+					}
+					if (event2.getX()>=25 && event2.getX()<425) {
 						X = 700 + (int)((event2.getX() + 25)/25)/2 * 50;
+					}
+					if (event2.getX()>=425 && event2.getX()<451) {
+						X = 700 + (425/25)/2 * 50;
 					}
 					if (event2.getZ()<25 && event2.getZ()>-25) {
 						Z = -800;
@@ -140,6 +162,8 @@ public class Controleur3D {
 					if (event2.getZ()<=-25) {
 						Z = -800 + (int) (event2.getZ()/25)/2 * 50;
 					}
+					System.out.println(event2.getX());
+					System.out.println(event2.getZ());
 				}
 				else {
 					if (event2.getX()<25 && event2.getX()>-25) {
@@ -157,21 +181,23 @@ public class Controleur3D {
 					if (event2.getZ()<=-25 && event2.getZ()>-375) {
 						Z = -800 + (int)((event2.getZ() - 25)/25)/2 * 50;
 					}
-					if (event2.getZ()<=-375 && event2.getZ()>=-425) {
+					if (event2.getZ()<=-375 && event2.getZ()>=-426) {
 						Z = -800 + (int)((-375)/25)/2 * 50;
 					}
-					if (event2.getZ()>=25) {
+					if (event2.getZ()>=25 && event2.getZ()<375) {
 						Z = -800 + (int)((event2.getZ() + 25)/25)/2 * 50;
 					}
-					System.out.println(event2.getX());
+					if (event2.getZ()>=375 && event2.getZ()<=426) {
+						Z = -800 + (int)((400)/25)/2 * 50;
+					}
 				}
 				SmartGroup lego_nn_pose = nouveauLego();
 				lego_nn_pose.setRotationAxis(Rotate.Y_AXIS);
-				lego_nn_pose.setRotate((plateau_jeu_liste.get(0)).get(0).getRotate());
+				lego_nn_pose.setRotate((plateau_jeu.getChildren().get(0).getRotate()));
 				LinkedList<Node> pile_vierge = new LinkedList();
 				plateau_jeu_liste.add(pile_vierge);
 				pile_vierge.add(lego_nn_pose);
-				
+
 				lego_nn_pose.translateYProperty().set(plateau_jeu.getChildren().get(0).getTranslateY() - 30);
 				if (valeur_rotate == 0) {
 					lego_nn_pose.translateXProperty().set(X);
@@ -227,9 +253,8 @@ public class Controleur3D {
 		cylindre2.translateYProperty().set(-8);	
 		return group;
 	}
-	
+
 	public void initialisation(ActionEvent event) throws IOException {
-		plateau_jeu_liste.add(pile1);
 		PhongMaterial material1 = new PhongMaterial();
 		material1.setDiffuseColor(Color.GRAY);
 		Box sol = new Box(cote - 1,20,cote - 50);
@@ -237,7 +262,6 @@ public class Controleur3D {
 		SmartGroup plateau = new SmartGroup();
 		plateau.getChildren().add(sol);
 		plateau_jeu.getChildren().add(plateau);
-		SmartGroup group = nouveauLego();
 		camera.translateZProperty().set(-1.2 * cote);
 		camera.translateYProperty().set(-100);
 		camera.setRotationAxis(Rotate.X_AXIS);
@@ -249,31 +273,27 @@ public class Controleur3D {
 		AnchorPane pane = loader.load();
 		pane.getChildren().add(subScene3D);
 		Scene scene = new Scene(pane);
-		group.translateXProperty().set(WIDTH/2 + 25);
-		group.translateYProperty().set(HEIGHT/1.5);
-		group.translateZProperty().set(-825);
 		plateau.translateXProperty().set(WIDTH/2);
 		plateau.translateYProperty().set((HEIGHT/1.5) + 30);
 		plateau.translateZProperty().set(-800);
-		pile1.add(plateau_jeu.getChildren().get(1));
 		for (int i=0;i<plateau_jeu.getChildren().size();i++) {
 			initMouseControl(plateau_jeu.getChildren().get(i), subScene3D, stage);
 		}
 		stage.addEventHandler(KeyEvent.KEY_PRESSED, event3 -> {
-		      switch (event3.getCode()) {
-		        case W:
-		          valeur_rotate = 90;
-		          break;
-		        case S:
-		          valeur_rotate = 0;
-		          break;
-		      }
-		    });
+			switch (event3.getCode()) {
+			case W:
+				valeur_rotate = 90;
+				break;
+			case S:
+				valeur_rotate = 0;
+				break;
+			}
+		});
 		stage.setTitle("Page jeu");
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public void switchToPageAcceuil(ActionEvent event) throws IOException{
 		Parent root = FXMLLoader.load(getClass().getResource("../vues/VuePageAcceuil.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -281,9 +301,9 @@ public class Controleur3D {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
-    @FXML
-    public void switchToCatalego(ActionEvent event)  throws IOException {
+
+	@FXML
+	public void switchToCatalego(ActionEvent event)  throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../vues/VueCatalegoPiece.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 		Stage stage = new Stage();
@@ -293,5 +313,5 @@ public class Controleur3D {
 		this.selecNom=catalego.choixlegonom;
 		this.selecCouleur=catalego.choixlegocouleur;
 		this.selecTaille=catalego.choixlegotaille;
-    }
+	}
 }
