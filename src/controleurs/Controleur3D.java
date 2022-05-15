@@ -141,17 +141,17 @@ public class Controleur3D {
 					if (event2.getX()<25 && event2.getX()>-25) {
 						X = 700;
 					}
-					if (event2.getX()<=-25 && event2.getX()>-425) {
+					if (event2.getX()<=-25 && event2.getX()>-425 + selecTaille * 50 - 50) {
 						X = 700 + (int)((event2.getX() - 25)/25)/2 * 50;
 					}
-					if (event2.getX()<=-425 && event2.getX()>-451) {
-						X = 700 + (-425/25)/2 * 50;
+					if (event2.getX()<=-425 + selecTaille * 50 - 50 && event2.getX()>-451) {
+						X = 700 + (-425/25)/2 * 50 + selecTaille * 25 - 25;
 					}
-					if (event2.getX()>=25 && event2.getX()<425) {
+					if (event2.getX()>=25 && event2.getX()<425 - selecTaille * 50 + 50) {
 						X = 700 + (int)((event2.getX() + 25)/25)/2 * 50;
 					}
-					if (event2.getX()>=425 && event2.getX()<451) {
-						X = 700 + (425/25)/2 * 50;
+					if (event2.getX()>=425 - selecTaille* 50 + 50 && event2.getX()<451) {
+						X = 700 + (425/25)/2 * 50 - selecTaille * 25 + 25;
 					}
 					if (event2.getZ()<25 && event2.getZ()>-25) {
 						Z = -800;
@@ -178,17 +178,17 @@ public class Controleur3D {
 					if (event2.getZ()<25 && event2.getZ()>-25) {
 						Z = -800;
 					}
-					if (event2.getZ()<=-25 && event2.getZ()>-375) {
+					if (event2.getZ()<=-25 && event2.getZ()>-375 + selecTaille * 50 - 50) {
 						Z = -800 + (int)((event2.getZ() - 25)/25)/2 * 50;
 					}
-					if (event2.getZ()<=-375 && event2.getZ()>=-426) {
-						Z = -800 + (int)((-375)/25)/2 * 50;
+					if (event2.getZ()<=-375 + selecTaille * 50 - 50 && event2.getZ()>=-426) {
+						Z = -800 + (int)((-375)/25)/2 * 50 + selecTaille * 25 - 25;
 					}
-					if (event2.getZ()>=25 && event2.getZ()<375) {
+					if (event2.getZ()>=25 && event2.getZ()<375 - selecTaille * 50 + 50) {
 						Z = -800 + (int)((event2.getZ() + 25)/25)/2 * 50;
 					}
-					if (event2.getZ()>=375 && event2.getZ()<=426) {
-						Z = -800 + (int)((400)/25)/2 * 50;
+					if (event2.getZ()>=375 - selecTaille * 50 + 50 && event2.getZ()<=426) {
+						Z = -800 + (int)((400)/25)/2 * 50 - selecTaille * 25 + 25;
 					}
 				}
 				SmartGroup lego_nn_pose = nouveauLego();
