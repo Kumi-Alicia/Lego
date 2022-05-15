@@ -94,18 +94,28 @@ public class ControleurCatalegoPiece implements Initializable{
 	@FXML
 	void selectiontri(ActionEvent event) {
 		String s = tri.getSelectionModel().getSelectedItem().toString();
+		String []texture = {"mario"};
 		String [] couleurs= {"blanc","bleu","gazon","gris","jaune","marron","noir","orange","rouge","rose","turquoise","vert","violet"};
+		String [][] typetri={couleurs,texture};
 		for(int i=0;i<this.legolist.tailleDicoInit;i++) {
 			this.grid.getChildren().clear();
 		}
-		if(s=="Couleur") {
+		if(s=="Couleurs" || s=="Textures")
+		{
+			int k;
+			if (s=="Couleurs") {
+				k = 0;
+			}
+			else {
+				k=1;
+			}
 			if(this.legolist.size()!=0) {
 				int column = 0;
 				int row = 1;
 				try {
-					for(int j=0 ; j<couleurs.length;j++) {
+					for(int j=0 ; j<typetri[k].length;j++) {
 						for(String nom : this.legolist.keySet()) {
-							if(nom.contains(couleurs[j])) {
+							if(nom.contains(typetri[k][j])) {
 								FXMLLoader fxmlLoader = new FXMLLoader();
 								fxmlLoader.setLocation(getClass().getResource("/vues/LegoCatalego.fxml"));
 								AnchorPane anchorPane = fxmlLoader.load();
@@ -230,7 +240,7 @@ public class ControleurCatalegoPiece implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.tri.getItems().addAll("Alphabetique","Couleur");
+		this.tri.getItems().addAll("Alphabetique","Couleurs","Textures");
 		this.tri.setValue("Alphabetique");
 		setChoixLego(this.legolist.get(this.legolist.firstKey()));
 		this.myListener = new MyListener() {
