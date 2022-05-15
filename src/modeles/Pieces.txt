@@ -24,6 +24,7 @@
  Carre blanc 2,/images/rectangleblanc1.jpg,000000,false,2,F3F1F1
  Carre gris 2,/images/rectanglegris1.jpg,959292,false,2,AEACAC
  Carre turquoise 2,/images/rectangleturquoise1.jpg,3EF3BC,false,2,39E2AF
+ Carre mario 1,/images/mario1.png,FFD919,true,1,/images/mariotext1.png
  Rectangle bleu 1,/images/rectanglebleu1.jpg,338DFF,false,1,0032FF
  Rectangle jaune 1,/images/rectanglejaune1.jpg,EADE1D,false,1,F7FF00
  Rectangle rouge 1,/images/rectanglerouge1.jpg,FD4040,false,1,FF0000
