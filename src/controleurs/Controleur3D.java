@@ -16,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -61,16 +60,24 @@ public class Controleur3D {
 	public Box prepareBox() {
 		PhongMaterial material = new PhongMaterial();
 		material.setDiffuseColor(this.selecCouleur);
-		if (valeur_rotate == 0) {
-			Box box = new Box(50+50*this.selecTaille,20,50);
+		if (selecNom.toLowerCase().contains("carre")) {
+			Box box = new Box(50*this.selecTaille,20,50*this.selecTaille);
 			box.setMaterial(material);
 			return box;
 		}
 		else {
-			Box box = new Box(50,20,50+50*this.selecTaille);
-			box.setMaterial(material);
-			return box;
+			if (valeur_rotate == 0) {
+				Box box = new Box(50+50*this.selecTaille,20,50);
+				box.setMaterial(material);
+				return box;
+			}
+			else {
+				Box box = new Box(50,20,50+50*this.selecTaille);
+				box.setMaterial(material);
+				return box;
+			}
 		}
+		
 
 	}
 	public Cylinder prepareCylinder() {
@@ -102,7 +109,6 @@ public class Controleur3D {
 							if ((plateau_jeu_liste.get(j)).get(0).getTranslateX() == X  && (plateau_jeu_liste.get(j)).get(0).getTranslateZ() == Z ) {
 								SmartGroup nveauGroup = nouveauLego();
 								plateau_jeu_liste.get(j).add(lego);
-								Node lego_dessous = plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-2);
 								nveauGroup.setRotationAxis(Rotate.Y_AXIS);
 								nveauGroup.setRotate((plateau_jeu_liste.get(j)).get(0).getRotate());
 								nveauGroup.translateXProperty().set(X);
@@ -162,8 +168,6 @@ public class Controleur3D {
 					if (event2.getZ()<=-25) {
 						Z = -800 + (int) (event2.getZ()/25)/2 * 50;
 					}
-					System.out.println(event2.getX());
-					System.out.println(event2.getZ());
 				}
 				else {
 					if (event2.getX()<25 && event2.getX()>-25) {
@@ -233,24 +237,101 @@ public class Controleur3D {
 	}
 	public SmartGroup nouveauLego() {
 		Cylinder cylindre = prepareCylinder();
-		Cylinder cylindre2 = prepareCylinder();;
+		Cylinder cylindre2 = prepareCylinder();
+		Cylinder cylindre3 = prepareCylinder();
+		Cylinder cylindre4 = prepareCylinder();
 		Box box = prepareBox();
 		SmartGroup group = new SmartGroup();
 		group.getChildren().add(box);
 		group.getChildren().add(cylindre);
-		group.getChildren().add(cylindre2);
-		plateau_jeu.getChildren().add(group);
-		box.translateYProperty().set(10);
-		if (valeur_rotate == 0) {
-			cylindre.translateXProperty().set(25);
-			cylindre2.translateXProperty().set(-25);
+		if (selecNom.toLowerCase().contains("carre")) {
+			if (selecTaille == 1) {
+				cylindre.translateXProperty().set(0);
+				cylindre.translateZProperty().set(0);
+			}
+			if (selecTaille == 2) {
+				group.getChildren().add(cylindre2);
+				group.getChildren().add(cylindre3);
+				group.getChildren().add(cylindre4);
+				cylindre.translateXProperty().set(25);
+				cylindre.translateZProperty().set(25);
+				cylindre2.translateXProperty().set(25);
+				cylindre2.translateZProperty().set(-25);
+				cylindre3.translateXProperty().set(-25);
+				cylindre3.translateZProperty().set(25);
+				cylindre4.translateXProperty().set(-25);
+				cylindre4.translateZProperty().set(-25);
+				cylindre2.translateYProperty().set(-8);
+				cylindre3.translateYProperty().set(-8);
+				cylindre4.translateYProperty().set(-8);
+			}
+			
 		}
 		else {
-			cylindre.translateZProperty().set(25);
-			cylindre2.translateZProperty().set(-25);
+			if (valeur_rotate == 0) {
+				if (selecTaille == 1) {
+					group.getChildren().add(cylindre2);
+					cylindre.translateXProperty().set(25);
+					cylindre2.translateXProperty().set(-25);
+					cylindre2.translateYProperty().set(-8);
+				}
+				if (selecTaille == 2) {
+					group.getChildren().add(cylindre2);
+					group.getChildren().add(cylindre3);
+					cylindre.translateXProperty().set(50);
+					cylindre2.translateXProperty().set(-50);
+					cylindre3.translateXProperty().set(0);
+					cylindre2.translateYProperty().set(-8);
+					cylindre3.translateYProperty().set(-8);
+				}
+				if (selecTaille == 3) {
+					group.getChildren().add(cylindre2);
+					group.getChildren().add(cylindre3);
+					group.getChildren().add(cylindre4);
+					cylindre.translateXProperty().set(75);
+					cylindre2.translateXProperty().set(-75);
+					cylindre3.translateXProperty().set(25);
+					cylindre4.translateXProperty().set(-25);
+					cylindre2.translateYProperty().set(-8);
+					cylindre3.translateYProperty().set(-8);
+					cylindre4.translateYProperty().set(-8);
+				}
+				
+			}
+			else {
+				if (selecTaille == 1) {
+					group.getChildren().add(cylindre2);
+					cylindre.translateZProperty().set(25);
+					cylindre2.translateZProperty().set(-25);
+					cylindre2.translateYProperty().set(-8);
+				}
+				if (selecTaille == 2) {
+					group.getChildren().add(cylindre2);
+					group.getChildren().add(cylindre3);
+					cylindre.translateZProperty().set(50);
+					cylindre2.translateZProperty().set(-50);
+					cylindre3.translateZProperty().set(0);
+					cylindre2.translateYProperty().set(-8);
+					cylindre3.translateYProperty().set(-8);
+				}
+				if (selecTaille == 3) {
+					group.getChildren().add(cylindre2);
+					group.getChildren().add(cylindre3);
+					group.getChildren().add(cylindre4);
+					cylindre.translateZProperty().set(75);
+					cylindre2.translateZProperty().set(-75);
+					cylindre3.translateZProperty().set(25);
+					cylindre4.translateZProperty().set(-25);
+					cylindre2.translateYProperty().set(-8);
+					cylindre3.translateYProperty().set(-8);
+					cylindre4.translateYProperty().set(-8);
+				}
+			}
 		}
+		
+		plateau_jeu.getChildren().add(group);
+		box.translateYProperty().set(10);
 		cylindre.translateYProperty().set(-8);
-		cylindre2.translateYProperty().set(-8);	
 		return group;
 	}
 
