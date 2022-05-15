@@ -24,6 +24,7 @@
  Carre blanc 2,/images/rectangleblanc1.jpg,000000,false,2,F3F1F1
  Carre gris 2,/images/rectanglegris1.jpg,959292,false,2,AEACAC
  Carre turquoise 2,/images/rectangleturquoise1.jpg,3EF3BC,false,2,39E2AF
+ Carre mario 1,/images/mario1.png,FFD919,true,1,/images/mariotext1.png
  Rectangle bleu 1,/images/rectanglebleu1.jpg,338DFF,false,1,0032FF
  Rectangle jaune 1,/images/rectanglejaune1.jpg,EADE1D,false,1,F7FF00
  Rectangle rouge 1,/images/rectanglerouge1.jpg,FD4040,false,1,FF0000
@@ -50,3 +51,16 @@
  Rectangle orange 2,/images/rectangleorange1.jpg,F86B14,false,2,E86616
  Rectangle violet 2,/images/rectangleviolet1.jpg,C414F8,false,2,AF16DC
  Rectangle rose 2,/images/rectanglerose1.jpg,EE3DC5,false,2,DD36B6
+ Rectangle bleu 3,/images/rectanglebleu2.jpg,338DFF,false,3,0032FF
+ Rectangle jaune 3,/images/rectanglejaune2.jpg,EADE1D,false,3,F7FF00
+ Rectangle rouge 3,/images/rectanglerouge2.jpg,FD4040,false,3,FF0000
+ Rectangle vert 3,/images/rectanglevert2.jpg,A2F0A3,false,3,1BFF00
+ Rectangle gazon 3,/images/rectanglegazon2.jpg,1BAD17,false,3,1A9E16
+ Rectangle turquoise 3,/images/rectangleturquoise1.jpg,3EF3BC,false,3,39E2AF
+ Rectangle gris 3,/images/rectanglegris1.jpg,959292,false,3,AEACAC
+ Rectangle noir 3,/images/rectanglenoir1.jpg,464545,false,3,000000
+ Rectangle blanc 3,/images/rectangleblanc1.jpg,000000,false,3,F3F1F1
+ Rectangle marron 3,/images/rectanglemarron1.jpg,693C06,false,3,834C09
+ Rectangle orange 3,/images/rectangleorange1.jpg,F86B14,false,3,E86616
+ Rectangle violet 3,/images/rectangleviolet1.jpg,C414F8,false,3,AF16DC
+ Rectangle rose 3,/images/rectanglerose1.jpg,EE3DC5,false,3,DD36B6
