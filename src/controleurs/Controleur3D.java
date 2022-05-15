@@ -15,6 +15,7 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -49,9 +50,10 @@ public class Controleur3D {
 	Camera camera = new PerspectiveCamera();
 	public static LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
 	public final DoubleProperty angleY = new SimpleDoubleProperty(0);
-	public static String selecNom="Rectangle bleu 1";
+	public static String selecNom="carre bleu 1";
 	public static Color selecCouleur=Color.ROYALBLUE;
 	public static int selecTaille=1;
+	public static String selecTexture=null;
 
 	public Controleur3D() {
 
@@ -59,7 +61,12 @@ public class Controleur3D {
 
 	public Box prepareBox() {
 		PhongMaterial material = new PhongMaterial();
-		material.setDiffuseColor(this.selecCouleur);
+		if(this.selecTexture!=null) {
+			material.setDiffuseMap(new Image(getClass().getResourceAsStream(this.selecTexture)));
+		}
+		else {
+			material.setDiffuseColor(this.selecCouleur);
+		}
 		if (selecNom.toLowerCase().contains("carre")) {
 			Box box = new Box(50*this.selecTaille,20,50*this.selecTaille);
 			box.setMaterial(material);
@@ -82,7 +89,12 @@ public class Controleur3D {
 	}
 	public Cylinder prepareCylinder() {
 		PhongMaterial material = new PhongMaterial();
-		material.setDiffuseColor(this.selecCouleur);
+		if(this.selecTexture!=null) {
+			material.setDiffuseMap(new Image(getClass().getResourceAsStream(this.selecTexture)));
+		}
+		else {
+			material.setDiffuseColor(this.selecCouleur);
+		}
 		Cylinder cylindre = new Cylinder(15,16,10);
 		cylindre.setMaterial(material);
 		return cylindre;
@@ -143,58 +155,94 @@ public class Controleur3D {
 			double X = 700;
 			double Z = -800;
 			if (event2.isAltDown()) {
-				if (valeur_rotate == 0) {
+				if (selecNom.toLowerCase().contains("carre") && selecTaille == 2) {
 					if (event2.getX()<25 && event2.getX()>-25) {
 						X = 700;
 					}
-					if (event2.getX()<=-25 && event2.getX()>-425 + selecTaille * 50 - 50) {
+					if (event2.getX()<=-25 && event2.getX()>=-425) {
 						X = 700 + (int)((event2.getX() - 25)/25)/2 * 50;
 					}
-					if (event2.getX()<=-425 + selecTaille * 50 - 50 && event2.getX()>-451) {
-						X = 700 + (-425/25)/2 * 50 + selecTaille * 25 - 25;
+					if (event2.getX()<-425) {
+						X = 700 + (int)((-425)/25)/2*50;
 					}
-					if (event2.getX()>=25 && event2.getX()<425 - selecTaille * 50 + 50) {
+					
+					if (event2.getX()>=25 && event2.getX()<=375) {
 						X = 700 + (int)((event2.getX() + 25)/25)/2 * 50;
 					}
-					if (event2.getX()>=425 - selecTaille* 50 + 50 && event2.getX()<451) {
-						X = 700 + (425/25)/2 * 50 - selecTaille * 25 + 25;
+					if (event2.getX()>375) {
+						X = 700 + (int)((375)/25)/2*50;
 					}
+					
 					if (event2.getZ()<25 && event2.getZ()>-25) {
 						Z = -800;
 					}
 					if (event2.getZ()>=25) {
 						Z = -800 + (int) (event2.getZ()/25)/2 * 50;
 					}
-					if (event2.getZ()<=-25) {
+					if (event2.getZ()<=-25 && event2.getZ()>=-400) {
 						Z = -800 + (int) (event2.getZ()/25)/2 * 50;
 					}
+					if (event2.getZ()<-400 ) {
+						Z = -800 + (int) (-375/25)/2 * 50;
+					}
+					System.out.println(event2.getX());
+					
 				}
 				else {
-					if (event2.getX()<25 && event2.getX()>-25) {
-						X = 700;
+					if (valeur_rotate == 0) {
+						if (event2.getX()<25 && event2.getX()>-25) {
+							X = 700;
+						}
+						if (event2.getX()<=-25 && event2.getX()>-425 + selecTaille * 50 - 50) {
+							X = 700 + (int)((event2.getX() - 25)/25)/2 * 50;
+						}
+						if (event2.getX()<=-425 + selecTaille * 50 - 50 && event2.getX()>-451) {
+							X = 700 + (-425/25)/2 * 50 + selecTaille * 25 - 25;
+						}
+						if (event2.getX()>=25 && event2.getX()<425 - selecTaille * 50 + 50) {
+							X = 700 + (int)((event2.getX() + 25)/25)/2 * 50;
+						}
+						if (event2.getX()>=425 - selecTaille* 50 + 50 && event2.getX()<451) {
+							X = 700 + (425/25)/2 * 50 - selecTaille * 25 + 25;
+						}
+						if (event2.getZ()<25 && event2.getZ()>-25) {
+							Z = -800;
+						}
+						if (event2.getZ()>=25) {
+							Z = -800 + (int) (event2.getZ()/25)/2 * 50;
+						}
+						if (event2.getZ()<=-25) {
+							Z = -800 + (int) (event2.getZ()/25)/2 * 50;
+						}
 					}
-					if (event2.getX()>=25) {
-						X = 700 + (int) (event2.getX()/25)/2 * 50;
-					}
-					if (event2.getX()<=-25) {
-						X = 650 + (int) (event2.getX()/25)/2 * 50;
-					}
-					if (event2.getZ()<25 && event2.getZ()>-25) {
-						Z = -800;
-					}
-					if (event2.getZ()<=-25 && event2.getZ()>-375 + selecTaille * 50 - 50) {
-						Z = -800 + (int)((event2.getZ() - 25)/25)/2 * 50;
-					}
-					if (event2.getZ()<=-375 + selecTaille * 50 - 50 && event2.getZ()>=-426) {
-						Z = -800 + (int)((-375)/25)/2 * 50 + selecTaille * 25 - 25;
-					}
-					if (event2.getZ()>=25 && event2.getZ()<375 - selecTaille * 50 + 50) {
-						Z = -800 + (int)((event2.getZ() + 25)/25)/2 * 50;
-					}
-					if (event2.getZ()>=375 - selecTaille * 50 + 50 && event2.getZ()<=426) {
-						Z = -800 + (int)((400)/25)/2 * 50 - selecTaille * 25 + 25;
+					else {
+						if (event2.getX()<25 && event2.getX()>-25) {
+							X = 700;
+						}
+						if (event2.getX()>=25) {
+							X = 700 + (int) (event2.getX()/25)/2 * 50;
+						}
+						if (event2.getX()<=-25) {
+							X = 650 + (int) (event2.getX()/25)/2 * 50;
+						}
+						if (event2.getZ()<25 && event2.getZ()>-25) {
+							Z = -800;
+						}
+						if (event2.getZ()<=-25 && event2.getZ()>-375 + selecTaille * 50 - 50) {
+							Z = -800 + (int)((event2.getZ() - 25)/25)/2 * 50;
+						}
+						if (event2.getZ()<=-375 + selecTaille * 50 - 50 && event2.getZ()>=-426) {
+							Z = -800 + (int)((-375)/25)/2 * 50 + selecTaille * 25 - 25;
+						}
+						if (event2.getZ()>=25 && event2.getZ()<375 - selecTaille * 50 + 50) {
+							Z = -800 + (int)((event2.getZ() + 25)/25)/2 * 50;
+						}
+						if (event2.getZ()>=375 - selecTaille * 50 + 50 && event2.getZ()<=426) {
+							Z = -800 + (int)((400)/25)/2 * 50 - selecTaille * 25 + 25;
+						}
 					}
 				}
+				
 				SmartGroup lego_nn_pose = nouveauLego();
 				lego_nn_pose.setRotationAxis(Rotate.Y_AXIS);
 				lego_nn_pose.setRotate((plateau_jeu.getChildren().get(0).getRotate()));
@@ -203,6 +251,10 @@ public class Controleur3D {
 				pile_vierge.add(lego_nn_pose);
 
 				lego_nn_pose.translateYProperty().set(plateau_jeu.getChildren().get(0).getTranslateY() - 30);
+				if (selecNom.toLowerCase().contains("carre") && selecTaille == 2) {
+					lego_nn_pose.translateXProperty().set(X);
+					lego_nn_pose.translateZProperty().set(Z + plateau_jeu.getChildren().get(0).getTranslateZ() + 800);
+				}
 				if (valeur_rotate == 0) {
 					lego_nn_pose.translateXProperty().set(X);
 					lego_nn_pose.translateZProperty().set(Z + plateau_jeu.getChildren().get(0).getTranslateZ() + 800);
@@ -337,7 +389,7 @@ public class Controleur3D {
 
 	public void initialisation(ActionEvent event) throws IOException {
 		PhongMaterial material1 = new PhongMaterial();
-		material1.setDiffuseColor(Color.GRAY);
+		material1.setDiffuseColor(Color.GREY);
 		Box sol = new Box(cote - 1,20,cote - 50);
 		sol.setMaterial(material1);
 		SmartGroup plateau = new SmartGroup();
@@ -394,5 +446,6 @@ public class Controleur3D {
 		this.selecNom=catalego.choixlegonom;
 		this.selecCouleur=catalego.choixlegocouleur;
 		this.selecTaille=catalego.choixlegotaille;
+		this.selecTexture=catalego.choixtexture;
 	}
 }
