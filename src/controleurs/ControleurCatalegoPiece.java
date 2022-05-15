@@ -73,6 +73,7 @@ public class ControleurCatalegoPiece implements Initializable{
 	public String choixlegonom;
 	public Color choixlegocouleur;
 	public int choixlegotaille;
+	public String choixtexture;
 	
 	public ArrayList<Lego> legoliste = new ArrayList<Lego>();
 	public CatalegoPiece legolist;
@@ -218,8 +219,9 @@ public class ControleurCatalegoPiece implements Initializable{
 	public void setChoixLego(Lego lego) {
 		this.nomLegoLabel.setText(lego.nom);
 		this.choixlegonom=lego.nom;
-		this.choixlegocouleur=lego.couleurLeg;
 		this.choixlegotaille=lego.taille;
+		this.choixtexture=lego.texture;
+		this.choixlegocouleur=lego.couleurLeg;
 		Image image = new Image(getClass().getResourceAsStream(lego.imageLego));
 		this.carteLegoGauche.setStyle("-fx-background-color: #"+lego.couleurCat+";\r\n"
 				+ "    -fx-background-radius: 30;");

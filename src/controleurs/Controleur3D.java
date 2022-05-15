@@ -15,6 +15,7 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -52,6 +53,7 @@ public class Controleur3D {
 	public static String selecNom="Rectangle bleu 1";
 	public static Color selecCouleur=Color.ROYALBLUE;
 	public static int selecTaille=1;
+	public static String selecTexture=null;
 
 	public Controleur3D() {
 
@@ -59,7 +61,12 @@ public class Controleur3D {
 
 	public Box prepareBox() {
 		PhongMaterial material = new PhongMaterial();
-		material.setDiffuseColor(this.selecCouleur);
+		if(this.selecTexture!=null) {
+			material.setDiffuseMap(new Image(getClass().getResourceAsStream(this.selecTexture)));
+		}
+		else {
+			material.setDiffuseColor(this.selecCouleur);
+		}
 		if (selecNom.toLowerCase().contains("carre")) {
 			Box box = new Box(50*this.selecTaille,20,50*this.selecTaille);
 			box.setMaterial(material);
@@ -82,7 +89,12 @@ public class Controleur3D {
 	}
 	public Cylinder prepareCylinder() {
 		PhongMaterial material = new PhongMaterial();
-		material.setDiffuseColor(this.selecCouleur);
+		if(this.selecTexture!=null) {
+			material.setDiffuseMap(new Image(getClass().getResourceAsStream(this.selecTexture)));
+		}
+		else {
+			material.setDiffuseColor(this.selecCouleur);
+		}
 		Cylinder cylindre = new Cylinder(15,16,10);
 		cylindre.setMaterial(material);
 		return cylindre;
@@ -337,7 +349,7 @@ public class Controleur3D {
 
 	public void initialisation(ActionEvent event) throws IOException {
 		PhongMaterial material1 = new PhongMaterial();
-		material1.setDiffuseColor(Color.GRAY);
+		material1.setDiffuseColor(Color.GREY);
 		Box sol = new Box(cote - 1,20,cote - 50);
 		sol.setMaterial(material1);
 		SmartGroup plateau = new SmartGroup();
@@ -394,5 +406,6 @@ public class Controleur3D {
 		this.selecNom=catalego.choixlegonom;
 		this.selecCouleur=catalego.choixlegocouleur;
 		this.selecTaille=catalego.choixlegotaille;
+		this.selecTexture=catalego.choixtexture;
 	}
 }

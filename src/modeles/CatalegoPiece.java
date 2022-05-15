@@ -20,10 +20,21 @@ public class CatalegoPiece extends TreeMap<String,Lego>{
         {	
             lecture = br.readLine().split(",");
             if (lecture[0].contains("Carre")){
-            	super.put(lecture[0],new Carre(lecture[0],lecture[1],lecture[2],Integer.valueOf(lecture[3]),Color.web(lecture[4])));
+            	if (!Boolean.valueOf(lecture[3])) {
+            		super.put(lecture[0],new Carre(lecture[0],lecture[1],lecture[2],Integer.valueOf(lecture[4]),Color.web(lecture[5])));
+            	}
+            	else {
+            		super.put(lecture[0],new Carre(lecture[0],lecture[1],lecture[2],Integer.valueOf(lecture[4]),lecture[5]));
+            	}
+            	
             }
             else if (lecture[0].contains("Rectangle")) {
-            	super.put(lecture[0],new Rectangle(lecture[0],lecture[1],lecture[2],Integer.valueOf(lecture[3]),Color.web(lecture[4])));
+            	if (!Boolean.valueOf(lecture[3])) {
+            		super.put(lecture[0],new Rectangle(lecture[0],lecture[1],lecture[2],Integer.valueOf(lecture[4]),Color.web(lecture[5])));
+            	}
+            	else {
+            		super.put(lecture[0],new Rectangle(lecture[0],lecture[1],lecture[2],Integer.valueOf(lecture[4]),lecture[6]));
+            	}
             } 
         }
 		this.tailleDicoInit=super.size();

@@ -10,4 +10,11 @@ public class Rectangle extends Lego{
 		this.taille=t;
 		this.imageLego=img;
 	}
+	public Rectangle(String n,String img, String cCat,int t, String texture) {
+		this.texture=texture;
+		this.couleurCat=cCat;
+		this.nom=n;
+		this.taille=t;
+		this.imageLego=img;
+	}
 }
