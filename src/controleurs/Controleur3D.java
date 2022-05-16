@@ -467,10 +467,14 @@ public class Controleur3D extends Observable {
 	
 	@FXML
 	public void charger(ActionEvent event) throws IOException, ClassNotFoundException {
-		for (int i=0; i<constructions.size();i++) {
-			for (int j=0; j<constructions.get(i).size();j++) {
-				System.out.println(constructions.get(i).get(j).toString());
+		for (int i=0;i<plateau_jeu_liste.size();i++) {
+			for (int j=0;j<plateau_jeu_liste.size();j++) {
+				plateau_jeu_liste.get(i).pop();
 			}
+			plateau_jeu_liste.remove(plateau_jeu_liste.get(i));
+		}
+		for (int k=1;k<plateau_jeu.getChildren().size();k++) {
+			plateau_jeu.getChildren().remove(1);
 		}
 		System.out.println("            ");
 		FileInputStream fis = new FileInputStream(new File("src/save/construction.xml"));
@@ -480,11 +484,7 @@ public class Controleur3D extends Observable {
 		decoder.close();
 		bis.close();
 		fis.close();
-		for (int i=0; i<constructions.size();i++) {
-			for (int j=0; j<constructions.get(i).size();j++) {
-				System.out.println(constructions.get(i).get(j).toString());
-			}
-		}
+		
 	}
 
 
