@@ -28,7 +28,9 @@ import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.GestureEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -41,7 +43,7 @@ import modeles.SmartGroup;
 
 @SuppressWarnings("deprecation")
 public class Controleur3D extends Observable {
-	public Stage stage;
+	public static Stage stage;
 	public Scene scene;
 	public Parent root;
 
@@ -55,15 +57,15 @@ public class Controleur3D extends Observable {
 	public static final float WIDTH = 1400;
 	public static final float HEIGHT = 800;
 
-	public double anchorX;
-	public double anchorAngleY = 0;
+	public static double anchorX;
 	public int cote = 900;
 	public double valeur_rotate = 90;
 	public static SmartGroup plateau_jeu = new SmartGroup();
 	Camera camera = new PerspectiveCamera();
 	static public LinkedList<LinkedList<LegoConstruc>> constructions = new LinkedList<LinkedList<LegoConstruc>>();
 	static public LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
-	public final DoubleProperty angleY = new SimpleDoubleProperty(0);
+	public static final DoubleProperty angleY = new SimpleDoubleProperty(0);
+	public static double anchorAngleY;
 	public static String selecNom="rectangle bleu 1";
 	public static Color selecCouleur=Color.ROYALBLUE;
 	public static int selecTaille=1;
@@ -73,27 +75,27 @@ public class Controleur3D extends Observable {
 		
 	}
 
-	public Box prepareBox() {
+	public Box prepareBox(Color couleur, String texture, int taille, String nom) {
 		PhongMaterial material = new PhongMaterial();
-		if(this.selecTexture!=null) {
-			material.setDiffuseMap(new Image(getClass().getResourceAsStream(this.selecTexture)));
+		if(texture!=null) {
+			material.setDiffuseMap(new Image(getClass().getResourceAsStream(texture)));
 		}
 		else {
-			material.setDiffuseColor(this.selecCouleur);
+			material.setDiffuseColor(couleur);
 		}
-		if (selecNom.toLowerCase().contains("carre")) {
-			Box box = new Box(50*this.selecTaille,20,50*this.selecTaille);
+		if (nom.toLowerCase().contains("carre")) {
+			Box box = new Box(50*taille,20,50*taille);
 			box.setMaterial(material);
 			return box;
 		}
 		else {
 			if (valeur_rotate == 0) {
-				Box box = new Box(50+50*this.selecTaille,20,50);
+				Box box = new Box(50+50*taille,20,50);
 				box.setMaterial(material);
 				return box;
 			}
 			else {
-				Box box = new Box(50,20,50+50*this.selecTaille);
+				Box box = new Box(50,20,50+50*taille);
 				box.setMaterial(material);
 				return box;
 			}
@@ -101,13 +103,13 @@ public class Controleur3D extends Observable {
 		
 
 	}
-	public Cylinder prepareCylinder() {
+	public Cylinder prepareCylinder(Color couleur, String texture) {
 		PhongMaterial material = new PhongMaterial();
-		if(this.selecTexture!=null) {
-			material.setDiffuseMap(new Image(getClass().getResourceAsStream(this.selecTexture)));
+		if(texture!=null) {
+			material.setDiffuseMap(new Image(getClass().getResourceAsStream(texture)));
 		}
 		else {
-			material.setDiffuseColor(this.selecCouleur);
+			material.setDiffuseColor(couleur);
 		}
 		Cylinder cylindre = new Cylinder(15,16,10);
 		cylindre.setMaterial(material);
@@ -140,7 +142,13 @@ public class Controleur3D extends Observable {
 								nveauGroup.translateXProperty().set(X);
 								nveauGroup.translateYProperty().set(plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-1).getTranslateY()-20);
 								nveauGroup.translateZProperty().set(Z);
-								LegoConstruc nvlle_piece = new LegoConstruc(selecNom, selecTaille, nveauGroup.getTranslateX(), nveauGroup.getTranslateY(), nveauGroup.getTranslateZ());
+								LegoConstruc nvlle_piece = null;
+								if (selecTexture == null) {
+									nvlle_piece = new LegoConstruc(selecNom, selecTaille, nveauGroup.getTranslateX(), nveauGroup.getTranslateY(), nveauGroup.getTranslateZ(), selecCouleur.toString(), null);
+								}
+								else {
+									nvlle_piece = new LegoConstruc(selecNom, selecTaille, nveauGroup.getTranslateX(), nveauGroup.getTranslateY(), nveauGroup.getTranslateZ(), null, selecTexture);
+								}	
 								constructions.get(j).add(nvlle_piece);
 								initMouseControl(nveauGroup, subScene3D, stage);
 								break;
@@ -279,9 +287,16 @@ public class Controleur3D extends Observable {
 					lego_nn_pose.translateZProperty().set(Z + plateau_jeu.getChildren().get(0).getTranslateZ() + 775);
 				}
 				LinkedList<LegoConstruc> nvlle_constructions = new LinkedList();
-				LegoConstruc nvlle_piece = new LegoConstruc(selecNom, selecTaille, lego_nn_pose.getTranslateX(), lego_nn_pose.getTranslateY(), lego_nn_pose.getTranslateZ());
+				LegoConstruc nvlle_piece = null;
+				if (selecTexture == null) {
+					nvlle_piece = new LegoConstruc(selecNom, selecTaille, lego_nn_pose.getTranslateX(), lego_nn_pose.getTranslateY(), lego_nn_pose.getTranslateZ(), selecCouleur.toString(), null);
+				}
+				else {
+					nvlle_piece = new LegoConstruc(selecNom, selecTaille, lego_nn_pose.getTranslateX(), lego_nn_pose.getTranslateY(), lego_nn_pose.getTranslateZ(), null, selecTexture);
+				}
 				constructions.add(nvlle_constructions);
 				nvlle_constructions.add(nvlle_piece);
+				
 				initMouseControl(lego_nn_pose, subScene3D, stage);
 				
 			}
@@ -305,13 +320,23 @@ public class Controleur3D extends Observable {
 			node.translateZProperty().set(node.getTranslateZ() - delta);
 			node.translateYProperty().set(node.getTranslateY()-delta);
 		});	
+		stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+			switch (event.getCode()) {
+			case W:
+				valeur_rotate = 90;
+				break;
+			case S:
+				valeur_rotate = 0;
+				break;
+			}
+		});
 	}
 	public SmartGroup nouveauLego() {
-		Cylinder cylindre = prepareCylinder();
-		Cylinder cylindre2 = prepareCylinder();
-		Cylinder cylindre3 = prepareCylinder();
-		Cylinder cylindre4 = prepareCylinder();
-		Box box = prepareBox();
+		Cylinder cylindre = prepareCylinder(selecCouleur, selecTexture);
+		Cylinder cylindre2 = prepareCylinder(selecCouleur, selecTexture);
+		Cylinder cylindre3 = prepareCylinder(selecCouleur, selecTexture);
+		Cylinder cylindre4 = prepareCylinder(selecCouleur, selecTexture);
+		Box box = prepareBox(selecCouleur, selecTexture, selecTaille, selecNom);
 		SmartGroup group = new SmartGroup();
 		group.getChildren().add(box);
 		group.getChildren().add(cylindre);
@@ -405,12 +430,12 @@ public class Controleur3D extends Observable {
 		cylindre.translateYProperty().set(-8);
 		return group;
 	}
-	public SmartGroup nouveauLego1(String type, int taille, double X, double Y, double Z) {
-		Cylinder cylindre = prepareCylinder();
-		Cylinder cylindre2 = prepareCylinder();
-		Cylinder cylindre3 = prepareCylinder();
-		Cylinder cylindre4 = prepareCylinder();
-		Box box = prepareBox();
+	public SmartGroup nouveauLego1(String type, int taille, double X, double Y, double Z, Color couleur, String texture) {
+		Cylinder cylindre = prepareCylinder(couleur, texture);
+		Cylinder cylindre2 = prepareCylinder(couleur, texture);
+		Cylinder cylindre3 = prepareCylinder(couleur, texture);
+		Cylinder cylindre4 = prepareCylinder(couleur, texture);
+		Box box = prepareBox(couleur, texture, taille, type);
 		SmartGroup group = new SmartGroup();
 		group.getChildren().add(box);
 		group.getChildren().add(cylindre);
@@ -529,23 +554,15 @@ public class Controleur3D extends Observable {
 		plateau.translateXProperty().set(WIDTH/2);
 		plateau.translateYProperty().set((HEIGHT/1.5) + 30);
 		plateau.translateZProperty().set(-800);
+		
 		for (int i=0;i<plateau_jeu.getChildren().size();i++) {
-			initMouseControl(plateau_jeu.getChildren().get(i), subScene3D, stage);
-		}
-		stage.addEventHandler(KeyEvent.KEY_PRESSED, event3 -> {
-			switch (event3.getCode()) {
-			case W:
-				valeur_rotate = 90;
-				break;
-			case S:
-				valeur_rotate = 0;
-				break;
-			}
-		});
+			initMouseControl(plateau_jeu.getChildren().get(i), subScene3D, stage);	
+		}	
 		stage.setTitle("Page jeu");
 		stage.setScene(scene);
 		stage.show();
 	}
+	
 
 	public void switchToPageAcceuil(ActionEvent event) throws IOException{
 		Parent root = FXMLLoader.load(getClass().getResource("../vues/VuePageAcceuil.fxml"));
@@ -602,10 +619,19 @@ public class Controleur3D extends Observable {
 			plateau_jeu_liste.add(nvlle_pile);
 			for (int k=0; k<constructions.get(j).size();k++) {
 				LegoConstruc piece_utilisation = constructions.get(j).get(k);
-				SmartGroup nvlle_piece = nouveauLego1(piece_utilisation.getType(),piece_utilisation.getTaille(),piece_utilisation.getX(),piece_utilisation.getY(),piece_utilisation.getZ());
-				nvlle_pile.add(nvlle_piece);
+				SmartGroup nvlle_piece = null;
+				if ( piece_utilisation.getTexture() == null) {
+					nvlle_piece = nouveauLego1(piece_utilisation.getType(),piece_utilisation.getTaille(),piece_utilisation.getX(),piece_utilisation.getY(),piece_utilisation.getZ(),Color.valueOf(piece_utilisation.getCouleur()),null);
+				}
+				else {
+					nvlle_piece = nouveauLego1(piece_utilisation.getType(),piece_utilisation.getTaille(),piece_utilisation.getX(),piece_utilisation.getY(),piece_utilisation.getZ(),null,piece_utilisation.getTexture());
+				}
+				initMouseControl(nvlle_piece,subScene3D, stage);
+				nvlle_piece.setRotationAxis(Rotate.Y_AXIS);
+				nvlle_piece.setRotate(plateau_jeu.getChildren().get(0).getRotate());
+				nvlle_pile.add(nvlle_piece);			
 			}
-		}	
+		}
 	}
 
 	@FXML
