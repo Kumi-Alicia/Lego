@@ -56,10 +56,10 @@ public class Controleur3D extends Observable {
 	public double anchorAngleY = 0;
 	public int cote = 900;
 	public double valeur_rotate = 90;
-	public SmartGroup plateau_jeu = new SmartGroup();
+	public static SmartGroup plateau_jeu = new SmartGroup();
 	Camera camera = new PerspectiveCamera();
 	static public LinkedList<LinkedList<LegoConstruc>> constructions = new LinkedList<LinkedList<LegoConstruc>>();
-	public LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
+	static public LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
 	public final DoubleProperty angleY = new SimpleDoubleProperty(0);
 	public static String selecNom="rectangle bleu 1";
 	public static Color selecCouleur=Color.ROYALBLUE;
@@ -401,6 +401,107 @@ public class Controleur3D extends Observable {
 		cylindre.translateYProperty().set(-8);
 		return group;
 	}
+	public SmartGroup nouveauLego1(String type, int taille, double X, double Y, double Z) {
+		Cylinder cylindre = prepareCylinder();
+		Cylinder cylindre2 = prepareCylinder();
+		Cylinder cylindre3 = prepareCylinder();
+		Cylinder cylindre4 = prepareCylinder();
+		Box box = prepareBox();
+		SmartGroup group = new SmartGroup();
+		group.getChildren().add(box);
+		group.getChildren().add(cylindre);
+		if (type.toLowerCase().contains("carre")) {
+			if (taille == 1) {
+				cylindre.translateXProperty().set(0);
+				cylindre.translateZProperty().set(0);
+			}
+			if (taille == 2) {
+				group.getChildren().add(cylindre2);
+				group.getChildren().add(cylindre3);
+				group.getChildren().add(cylindre4);
+				cylindre.translateXProperty().set(25);
+				cylindre.translateZProperty().set(25);
+				cylindre2.translateXProperty().set(25);
+				cylindre2.translateZProperty().set(-25);
+				cylindre3.translateXProperty().set(-25);
+				cylindre3.translateZProperty().set(25);
+				cylindre4.translateXProperty().set(-25);
+				cylindre4.translateZProperty().set(-25);
+				cylindre2.translateYProperty().set(-8);
+				cylindre3.translateYProperty().set(-8);
+				cylindre4.translateYProperty().set(-8);
+			}
+			
+		}
+		else {
+			if (valeur_rotate == 0) {
+				if (taille == 1) {
+					group.getChildren().add(cylindre2);
+					cylindre.translateXProperty().set(25);
+					cylindre2.translateXProperty().set(-25);
+					cylindre2.translateYProperty().set(-8);
+				}
+				if (taille == 2) {
+					group.getChildren().add(cylindre2);
+					group.getChildren().add(cylindre3);
+					cylindre.translateXProperty().set(50);
+					cylindre2.translateXProperty().set(-50);
+					cylindre3.translateXProperty().set(0);
+					cylindre2.translateYProperty().set(-8);
+					cylindre3.translateYProperty().set(-8);
+				}
+				if (taille == 3) {
+					group.getChildren().add(cylindre2);
+					group.getChildren().add(cylindre3);
+					group.getChildren().add(cylindre4);
+					cylindre.translateXProperty().set(75);
+					cylindre2.translateXProperty().set(-75);
+					cylindre3.translateXProperty().set(25);
+					cylindre4.translateXProperty().set(-25);
+					cylindre2.translateYProperty().set(-8);
+					cylindre3.translateYProperty().set(-8);
+					cylindre4.translateYProperty().set(-8);
+				}
+				
+			}
+			else {
+				if (taille == 1) {
+					group.getChildren().add(cylindre2);
+					cylindre.translateZProperty().set(25);
+					cylindre2.translateZProperty().set(-25);
+					cylindre2.translateYProperty().set(-8);
+				}
+				if (taille == 2) {
+					group.getChildren().add(cylindre2);
+					group.getChildren().add(cylindre3);
+					cylindre.translateZProperty().set(50);
+					cylindre2.translateZProperty().set(-50);
+					cylindre3.translateZProperty().set(0);
+					cylindre2.translateYProperty().set(-8);
+					cylindre3.translateYProperty().set(-8);
+				}
+				if (taille == 3) {
+					group.getChildren().add(cylindre2);
+					group.getChildren().add(cylindre3);
+					group.getChildren().add(cylindre4);
+					cylindre.translateZProperty().set(75);
+					cylindre2.translateZProperty().set(-75);
+					cylindre3.translateZProperty().set(25);
+					cylindre4.translateZProperty().set(-25);
+					cylindre2.translateYProperty().set(-8);
+					cylindre3.translateYProperty().set(-8);
+					cylindre4.translateYProperty().set(-8);
+				}
+			}
+		}
+		group.setTranslateX(X);
+		group.setTranslateY(Y);
+		group.setTranslateZ(Z);
+		plateau_jeu.getChildren().add(group);
+		box.translateYProperty().set(10);
+		cylindre.translateYProperty().set(-8);
+		return group;
+	}
 
 	public void initialisation(ActionEvent event) throws IOException {
 		PhongMaterial material1 = new PhongMaterial();
@@ -477,16 +578,11 @@ public class Controleur3D extends Observable {
 	
 	@FXML
 	public void charger(ActionEvent event) throws IOException, ClassNotFoundException {
-		for (int i=0;i<plateau_jeu_liste.size();i++) {
-			for (int j=0;j<plateau_jeu_liste.size();j++) {
-				plateau_jeu_liste.get(i).pop();
-			}
-			plateau_jeu_liste.remove(plateau_jeu_liste.get(i));
-		}
-		for (int k=1;k<plateau_jeu.getChildren().size();k++) {
+		plateau_jeu_liste = new LinkedList<LinkedList<Node>>();
+		int taille = plateau_jeu.getChildren().size();
+		for (int i=0;i<taille-1;i++) {
 			plateau_jeu.getChildren().remove(1);
 		}
-		System.out.println("            ");
 		FileInputStream fis = new FileInputStream(new File("src/save/construction.xml"));
 		BufferedInputStream bis = new BufferedInputStream(fis);
 		XMLDecoder decoder = new XMLDecoder(bis);
@@ -494,7 +590,15 @@ public class Controleur3D extends Observable {
 		decoder.close();
 		bis.close();
 		fis.close();
-		
+		for (int j=0;j<constructions.size();j++) {
+			LinkedList<Node> nvlle_pile = new LinkedList<Node>();
+			plateau_jeu_liste.add(nvlle_pile);
+			for (int k=0; k<constructions.get(j).size();k++) {
+				LegoConstruc piece_utilisation = constructions.get(j).get(k);
+				SmartGroup nvlle_piece = nouveauLego1(piece_utilisation.getType(),piece_utilisation.getTaille(),piece_utilisation.getX(),piece_utilisation.getY(),piece_utilisation.getZ());
+				nvlle_pile.add(nvlle_piece);
+			}
+		}	
 	}
 
 	@FXML
