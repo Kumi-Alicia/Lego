@@ -11,6 +11,12 @@
  Carre blanc 1,/images/carreblanc1.jpg,000000,false,1,F3F1F1
  Carre gris 1,/images/carregris1.jpg,959292,false,1,AEACAC
  Carre turquoise 1,/images/carreturquoise1.jpg,false,3EF3BC,1,39E2AF
+ Carre mario 1,/images/carremario1.png,FFD919,true,1,/images/mariotext1.png
+ Carre eau 1,/images/carreeau1.jpg,338DFF,true,1,/images/eau.jpg
+ Carre brique 1,/images/carrebrique1.jpg,F86B14,true,1,/images/brique.jpg
+ Carre bois 1,/images/carrebois1.jpg,693C06,true,1,/images/bois.jpg
+ Carre pierre 1,/images/carrepierre1.jpg,959292,true,1,/images/pierre.jpg
+ Carre herbe 1,/images/carreherbe1.jpg,A2F0A3,true,1,/images/herbe.jpg
  Carre bleu 2,/images/carrebleu2.jpg,338DFF,false,2,0032FF
  Carre jaune 2,/images/carrejaune2.jpg,EADE1D,false,2,F7FF00
  Carre rouge 2,/images/carrerouge2.jpg,FD4040,false,2,FF0000
@@ -24,7 +30,12 @@
  Carre blanc 2,/images/carreblanc2.jpg,000000,false,2,F3F1F1
  Carre gris 2,/images/carregris2.jpg,959292,false,2,AEACAC
  Carre turquoise 2,/images/carreturquoise2.jpg,3EF3BC,false,2,39E2AF
- Carre mario 1,/images/mario1.png,FFD919,true,1,/images/mariotext1.png
+ Carre mario 2,/images/carremario2.jpg,FFD919,true,2,/images/mariotext1.png
+ Carre eau 2,/images/carreeau2.jpg,338DFF,true,2,/images/eau.jpg
+ Carre brique 2,/images/carrebrique2.jpg,F86B14,true,2,/images/brique.jpg
+ Carre bois 2,/images/carrebois2.jpg,693C06,true,2,/images/bois.jpg
+ Carre pierre 2,/images/carrepierre2.jpg,959292,true,2,/images/pierre.jpg
+ Carre herbe 2,/images/carreherbe2.jpg,A2F0A3,true,2,/images/herbe.jpg
  Rectangle bleu 1,/images/rectanglebleu1.jpg,338DFF,false,1,0032FF
  Rectangle jaune 1,/images/rectanglejaune1.jpg,EADE1D,false,1,F7FF00
  Rectangle rouge 1,/images/rectanglerouge1.jpg,FD4040,false,1,FF0000
@@ -38,6 +49,12 @@
  Rectangle blanc 1,/images/rectangleblanc1.jpg,000000,false,1,F3F1F1
  Rectangle gris 1,/images/rectanglegris1.jpg,959292,false,1,AEACAC
  Rectangle turquoise 1,/images/rectangleturquoise1.jpg,false,3EF3BC,1,39E2AF
+ Rectangle mario 1,/images/rectanglemario1.jpg,FFD919,true,1,/images/mariotext1.png
+ Rectangle eau 1,/images/rectangleeau1.jpg,338DFF,true,1,/images/eau.jpg
+ Rectangle brique 1,/images/rectanglebrique1.jpg,F86B14,true,1,/images/brique.jpg
+ Rectangle bois 1,/images/rectanglebois1.jpg,693C06,true,1,/images/bois.jpg
+ Rectangle pierre 1,/images/rectanglepierre1.jpg,959292,true,1,/images/pierre.jpg
+ Rectangle herbe 1,/images/rectangleherbe1.jpg,A2F0A3,true,1,/images/herbe.jpg
  Rectangle bleu 2,/images/rectanglebleu2.jpg,338DFF,false,2,0032FF
  Rectangle jaune 2,/images/rectanglejaune2.jpg,EADE1D,false,2,F7FF00
  Rectangle rouge 2,/images/rectanglerouge2.jpg,FD4040,false,2,FF0000
@@ -51,6 +68,12 @@
  Rectangle orange 2,/images/rectangleorange2.jpg,F86B14,false,2,E86616
  Rectangle violet 2,/images/rectangleviolet2.jpg,C414F8,false,2,AF16DC
  Rectangle rose 2,/images/rectanglerose2.jpg,EE3DC5,false,2,DD36B6
+ Rectangle mario 2,/images/rectanglemario2.jpg,FFD919,true,2,/images/mariotext1.png
+ Rectangle eau 2,/images/rectangleeau2.jpg,338DFF,true,2,/images/eau.jpg
+ Rectangle brique 2,/images/rectanglebrique2.jpg,F86B14,true,2,/images/brique.jpg
+ Rectangle bois 2,/images/rectanglebois2.jpg,693C06,true,2,/images/bois.jpg
+ Rectangle pierre 2,/images/rectanglepierre2.jpg,959292,true,2,/images/pierre.jpg
+ Rectangle herbe 2,/images/rectangleherbe2.jpg,A2F0A3,true,2,/images/herbe.jpg
  Rectangle bleu 3,/images/rectanglebleu3.jpg,338DFF,false,3,0032FF
  Rectangle jaune 3,/images/rectanglejaune3.jpg,EADE1D,false,3,F7FF00
  Rectangle rouge 3,/images/rectanglerouge3.jpg,FD4040,false,3,FF0000
@@ -64,3 +87,9 @@
  Rectangle orange 3,/images/rectangleorange3.jpg,F86B14,false,3,E86616
  Rectangle violet 3,/images/rectangleviolet3.jpg,C414F8,false,3,AF16DC
  Rectangle rose 3,/images/rectanglerose3.jpg,EE3DC5,false,3,DD36B6
+ Rectangle mario 3,/images/rectanglemario3.jpg,FFD919,true,3,/images/mariotext1.png
+ Rectangle eau 3,/images/rectangleeau3.jpg,338DFF,true,3,/images/eau.jpg
+ Rectangle brique 3,/images/rectanglebrique3.jpg,F86B14,true,3,/images/brique.jpg
+ Rectangle bois 3,/images/rectanglebois3.jpg,693C06,true,3,/images/bois.jpg
+ Rectangle pierre 3,/images/rectanglepierre3.jpg,959292,true,3,/images/pierre.jpg
+ Rectangle herbe 3,/images/rectangleherbe3.jpg,A2F0A3,true,3,/images/herbe.jpg
