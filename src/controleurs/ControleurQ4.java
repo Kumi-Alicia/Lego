@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ControleurQ1 {
+public class ControleurQ4 {
 	public Stage stage;
 	public Scene scene;
 	public Parent root;

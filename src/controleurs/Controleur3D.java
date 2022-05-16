@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Observable;
+
+import modeles.DemandeSauvegarde;
 import modeles.LegoConstruc;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -562,8 +564,10 @@ public class Controleur3D extends Observable {
 
 	@FXML
     public void sauvegarder(ActionEvent event) {
+		String nom = DemandeSauvegarde.display();
+		System.out.println(nom);
 		try {
-			FileOutputStream fos = new FileOutputStream(new File("src/save/construction.xml"));
+			FileOutputStream fos = new FileOutputStream(new File("src/save/"+nom+".xml"));
 			BufferedOutputStream bos = new BufferedOutputStream(fos);
 			XMLEncoder encoder = new XMLEncoder(bos);
 			encoder.writeObject(this.constructions);
