@@ -1,8 +1,17 @@
 package controleurs;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
-
+import java.util.ArrayList;
+import java.util.Observable;
+import modeles.LegoConstruc;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
@@ -27,7 +36,8 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import modeles.SmartGroup;
 
-public class Controleur3D {
+@SuppressWarnings("deprecation")
+public class Controleur3D extends Observable {
 	public Stage stage;
 	public Scene scene;
 	public Parent root;
@@ -48,15 +58,15 @@ public class Controleur3D {
 	public double valeur_rotate = 90;
 	public SmartGroup plateau_jeu = new SmartGroup();
 	Camera camera = new PerspectiveCamera();
+	static public LinkedList<LinkedList<LegoConstruc>> constructions = new LinkedList<LinkedList<LegoConstruc>>();
 	public LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
 	public final DoubleProperty angleY = new SimpleDoubleProperty(0);
-	public static String selecNom="carre bleu 1";
+	public static String selecNom="rectangle bleu 1";
 	public static Color selecCouleur=Color.ROYALBLUE;
 	public static int selecTaille=1;
 	public static String selecTexture=null;
-
 	public Controleur3D() {
-
+		
 	}
 
 	public Box prepareBox() {
@@ -126,6 +136,8 @@ public class Controleur3D {
 								nveauGroup.translateXProperty().set(X);
 								nveauGroup.translateYProperty().set(plateau_jeu_liste.get(j).get(plateau_jeu_liste.get(j).size()-1).getTranslateY()-20);
 								nveauGroup.translateZProperty().set(Z);
+								LegoConstruc nvlle_piece = new LegoConstruc(selecNom, selecTaille, nveauGroup.getTranslateX(), nveauGroup.getTranslateY(), nveauGroup.getTranslateZ());
+								constructions.get(j).add(nvlle_piece);
 								initMouseControl(nveauGroup, subScene3D, stage);
 								break;
 							}
@@ -136,10 +148,13 @@ public class Controleur3D {
 					for (int j=0; j<plateau_jeu_liste.size(); j++) {
 						if ((plateau_jeu_liste.get(j)).get(0).getTranslateX() == X  && (plateau_jeu_liste.get(j)).get(0).getTranslateZ() == Z ) {
 							plateau_jeu_liste.get(j).pop();
+							constructions.get(j).pop();
 							if (plateau_jeu_liste.get(j).isEmpty()) {
 								plateau_jeu_liste.remove(j);
+								constructions.remove(j);
 							}
 							plateau_jeu.getChildren().remove(lego);
+							
 							break;
 						}
 					}
@@ -182,7 +197,7 @@ public class Controleur3D {
 					if (event2.getZ()<-400 ) {
 						Z = -800 + (int) (-375/25)/2 * 50;
 					}
-					System.out.println(event2.getX());
+					
 					
 				}
 				else {
@@ -246,7 +261,6 @@ public class Controleur3D {
 				LinkedList<Node> pile_vierge = new LinkedList();
 				plateau_jeu_liste.add(pile_vierge);
 				pile_vierge.add(lego_nn_pose);
-
 				lego_nn_pose.translateYProperty().set(plateau_jeu.getChildren().get(0).getTranslateY() - 30);
 				if (selecNom.toLowerCase().contains("carre") && selecTaille == 2) {
 					lego_nn_pose.translateXProperty().set(X);
@@ -260,8 +274,12 @@ public class Controleur3D {
 					lego_nn_pose.translateXProperty().set(X + 25);
 					lego_nn_pose.translateZProperty().set(Z + plateau_jeu.getChildren().get(0).getTranslateZ() + 775);
 				}
+				LinkedList<LegoConstruc> nvlle_constructions = new LinkedList();
+				LegoConstruc nvlle_piece = new LegoConstruc(selecNom, selecTaille, lego_nn_pose.getTranslateX(), lego_nn_pose.getTranslateY(), lego_nn_pose.getTranslateZ());
+				constructions.add(nvlle_constructions);
+				nvlle_constructions.add(nvlle_piece);
 				initMouseControl(lego_nn_pose, subScene3D, stage);
-
+				
 			}
 
 		});
@@ -431,6 +449,44 @@ public class Controleur3D {
 		stage.setScene(scene);
 		stage.show();
 	}
+	@FXML
+    public void sauvegarder(ActionEvent event) {
+		try {
+			FileOutputStream fos = new FileOutputStream(new File("src/save/construction.xml"));
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			XMLEncoder encoder = new XMLEncoder(bos);
+			encoder.writeObject(this.constructions);
+			encoder.flush();
+			encoder.close();
+			bos.close();
+			fos.close();
+		} catch (IOException e) {
+			throw new RuntimeException("Impossible d'écrire les données");
+		}
+    }
+	
+	@FXML
+	public void charger(ActionEvent event) throws IOException, ClassNotFoundException {
+		for (int i=0; i<constructions.size();i++) {
+			for (int j=0; j<constructions.get(i).size();j++) {
+				System.out.println(constructions.get(i).get(j).toString());
+			}
+		}
+		System.out.println("            ");
+		FileInputStream fis = new FileInputStream(new File("src/save/construction.xml"));
+		BufferedInputStream bis = new BufferedInputStream(fis);
+		XMLDecoder decoder = new XMLDecoder(bis);
+		this.constructions = (LinkedList<LinkedList<LegoConstruc>>)decoder.readObject();
+		decoder.close();
+		bis.close();
+		fis.close();
+		for (int i=0; i<constructions.size();i++) {
+			for (int j=0; j<constructions.get(i).size();j++) {
+				System.out.println(constructions.get(i).get(j).toString());
+			}
+		}
+	}
+
 
 	@FXML
 	public void switchToCatalego(ActionEvent event)  throws IOException {
