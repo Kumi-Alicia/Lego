@@ -449,6 +449,16 @@ public class Controleur3D extends Observable {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	 @FXML
+	 void Tutoriel(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../vues/VuePageTuto.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));  
+		stage.showAndWait();
+	 }
+
 	@FXML
     public void sauvegarder(ActionEvent event) {
 		try {
@@ -486,7 +496,6 @@ public class Controleur3D extends Observable {
 		fis.close();
 		
 	}
-
 
 	@FXML
 	public void switchToCatalego(ActionEvent event)  throws IOException {

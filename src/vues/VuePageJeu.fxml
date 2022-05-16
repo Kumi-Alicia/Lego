@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.Controleur3D">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.Controleur3D">
    <children>
       <BorderPane prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
@@ -37,6 +37,14 @@
                   <Button fx:id="btnsauvegarder" alignment="CENTER" mnemonicParsing="false" onAction="#sauvegarder" styleClass="police-page-jeu" stylesheets="@../style/style.css" text="Sauvegarder">
                      <font>
                         <Font name="Cambria Bold" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#Tutoriel" prefHeight="38.0" prefWidth="134.0" styleClass="police-page-jeu" stylesheets="@../style/style.css" text="Tutoriel">
+                     <font>
+                        <Font name="Cambria" size="12.0" />
                      </font>
                   </Button>
                </children>

@@ -3,6 +3,7 @@ package controleurs;
 import java.io.IOException;
 import java.util.LinkedList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -17,10 +18,17 @@ public class ControleurPageAcceuil {
 	
 	public void switchToPageJeu(ActionEvent event) throws IOException{
 		Controleur3D c = new Controleur3D();
-		c.initialisation(event);
+		c.initialisation(event);	
 	}
+	@FXML
+    void tutoriel(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../vues/VuePageTuto.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root1));  
+		stage.showAndWait();
+    }
 	public void fermerApplication(ActionEvent event) throws IOException{
-		System.out.println("L'application va se fermer!");
 		System.exit(0);
 	}
 }
