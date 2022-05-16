@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurQ1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurQ5">
    <children>
       <BorderPane prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
@@ -23,7 +23,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="99.0" prefWidth="916.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="117.0" prefWidth="1141.0" text="Comment poser le 1er lego d'une pile?">
+                        <Label alignment="CENTER" prefHeight="117.0" prefWidth="1141.0" text="Comment choisir un lego?">
                            <font>
                               <Font name="Cambria" size="59.0" />
                            </font>
@@ -37,10 +37,10 @@
                      <children>
                         <ImageView fitHeight="403.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Gif1.gif" />
+                              <Image url="@../images/Gif5.gif" />
                            </image>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pour poser le 1er lego d'une pile, il faut appuyer sur Alt + Clic gauche sur le plateau." wrappingWidth="442.9092845916748">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pour choisir un lego, cliquer sur Catalego, puis sélectionner le lego que l'on souhaite poser, puis cliquer sur Ajouter lego, et le poser." wrappingWidth="442.9092845916748">
                            <font>
                               <Font name="Cambria" size="39.0" />
                            </font>
