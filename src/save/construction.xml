@@ -13,6 +13,13 @@
        </void>
       </void>
       <void class="modeles.LegoConstruc" method="getField">
+       <string>couleur</string>
+       <void method="set">
+        <object idref="LegoConstruc0"/>
+        <string>0x4169e1ff</string>
+       </void>
+      </void>
+      <void class="modeles.LegoConstruc" method="getField">
        <string>taille</string>
        <void method="set">
         <object idref="LegoConstruc0"/>
@@ -37,7 +44,7 @@
        <string>z</string>
        <void method="set">
         <object idref="LegoConstruc0"/>
-        <double>-1175.0</double>
+        <double>-925.0</double>
        </void>
       </void>
      </object>
@@ -56,6 +63,13 @@
        </void>
       </void>
       <void class="modeles.LegoConstruc" method="getField">
+       <string>couleur</string>
+       <void method="set">
+        <object idref="LegoConstruc1"/>
+        <string>0x4169e1ff</string>
+       </void>
+      </void>
+      <void class="modeles.LegoConstruc" method="getField">
        <string>taille</string>
        <void method="set">
         <object idref="LegoConstruc1"/>
@@ -66,7 +80,7 @@
        <string>x</string>
        <void method="set">
         <object idref="LegoConstruc1"/>
-        <double>575.0</double>
+        <double>625.0</double>
        </void>
       </void>
       <void class="modeles.LegoConstruc" method="getField">
@@ -80,7 +94,7 @@
        <string>z</string>
        <void method="set">
         <object idref="LegoConstruc1"/>
-        <double>-1025.0</double>
+        <double>-1125.0</double>
        </void>
       </void>
      </object>
@@ -96,6 +110,13 @@
        <void method="set">
         <object idref="LegoConstruc2"/>
         <string>rectangle bleu 1</string>
+       </void>
+      </void>
+      <void class="modeles.LegoConstruc" method="getField">
+       <string>couleur</string>
+       <void method="set">
+        <object idref="LegoConstruc2"/>
+        <string>0x4169e1ff</string>
        </void>
       </void>
       <void class="modeles.LegoConstruc" method="getField">
@@ -123,7 +144,7 @@
        <string>z</string>
        <void method="set">
         <object idref="LegoConstruc2"/>
-        <double>-1175.0</double>
+        <double>-825.0</double>
        </void>
       </void>
      </object>
@@ -138,35 +159,92 @@
        <string>type</string>
        <void method="set">
         <object idref="LegoConstruc3"/>
-        <string>Carre blanc 2</string>
+        <string>rectangle bleu 1</string>
+       </void>
+      </void>
+      <void class="modeles.LegoConstruc" method="getField">
+       <string>couleur</string>
+       <void method="set">
+        <object idref="LegoConstruc3"/>
+        <string>0x4169e1ff</string>
        </void>
       </void>
       <void class="modeles.LegoConstruc" method="getField">
        <string>taille</string>
        <void method="set">
         <object idref="LegoConstruc3"/>
-        <int>2</int>
+        <int>1</int>
        </void>
       </void>
       <void class="modeles.LegoConstruc" method="getField">
        <string>x</string>
        <void method="set">
         <object idref="LegoConstruc3"/>
-        <double>775.0</double>
+        <double>875.0</double>
        </void>
       </void>
       <void class="modeles.LegoConstruc" method="getField">
        <string>y</string>
        <void method="set">
         <object idref="LegoConstruc3"/>
-        <double>533.3333333333335</double>
+        <double>533.3333333333334</double>
        </void>
       </void>
       <void class="modeles.LegoConstruc" method="getField">
        <string>z</string>
        <void method="set">
         <object idref="LegoConstruc3"/>
-        <double>-925.0</double>
+        <double>-1125.0</double>
+       </void>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="java.util.LinkedList">
+    <void method="add">
+     <object class="modeles.LegoConstruc" id="LegoConstruc4">
+      <void class="modeles.LegoConstruc" method="getField">
+       <string>type</string>
+       <void method="set">
+        <object idref="LegoConstruc4"/>
+        <string>rectangle bleu 1</string>
+       </void>
+      </void>
+      <void class="modeles.LegoConstruc" method="getField">
+       <string>couleur</string>
+       <void method="set">
+        <object idref="LegoConstruc4"/>
+        <string>0x4169e1ff</string>
+       </void>
+      </void>
+      <void class="modeles.LegoConstruc" method="getField">
+       <string>taille</string>
+       <void method="set">
+        <object idref="LegoConstruc4"/>
+        <int>1</int>
+       </void>
+      </void>
+      <void class="modeles.LegoConstruc" method="getField">
+       <string>x</string>
+       <void method="set">
+        <object idref="LegoConstruc4"/>
+        <double>975.0</double>
+       </void>
+      </void>
+      <void class="modeles.LegoConstruc" method="getField">
+       <string>y</string>
+       <void method="set">
+        <object idref="LegoConstruc4"/>
+        <double>533.3333333333334</double>
+       </void>
+      </void>
+      <void class="modeles.LegoConstruc" method="getField">
+       <string>z</string>
+       <void method="set">
+        <object idref="LegoConstruc4"/>
+        <double>-875.0</double>
        </void>
       </void>
      </object>
