@@ -1,7 +1,7 @@
 package main;
 
-import modeles.Lego;
+import modeles.LegoCat;
 
 public interface MyListener {
-	public void onClickListener(Lego lego);
+	public void onClickListener(LegoCat lego);
 }	
