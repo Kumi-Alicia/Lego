@@ -3,7 +3,7 @@ package modeles;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-public abstract class Lego {
+public abstract class LegoCat {
 	public String nom;
 	public String imageLego;
 	public String couleurCat;

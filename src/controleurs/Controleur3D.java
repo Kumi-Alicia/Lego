@@ -46,9 +46,9 @@ public class Controleur3D {
 	public double anchorAngleY = 0;
 	public int cote = 900;
 	public double valeur_rotate = 90;
-	public static SmartGroup plateau_jeu = new SmartGroup();
+	public SmartGroup plateau_jeu = new SmartGroup();
 	Camera camera = new PerspectiveCamera();
-	public static LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
+	public LinkedList<LinkedList<Node>> plateau_jeu_liste=new LinkedList<LinkedList<Node>>();
 	public final DoubleProperty angleY = new SimpleDoubleProperty(0);
 	public static String selecNom="carre bleu 1";
 	public static Color selecCouleur=Color.ROYALBLUE;
@@ -129,7 +129,6 @@ public class Controleur3D {
 								initMouseControl(nveauGroup, subScene3D, stage);
 								break;
 							}
-
 						}
 					}
 				}
@@ -142,8 +141,6 @@ public class Controleur3D {
 							}
 							plateau_jeu.getChildren().remove(lego);
 							break;
-
-
 						}
 					}
 				}

@@ -1,7 +1,7 @@
 package controleurs;
 import modeles.Carre;
 import modeles.CatalegoPiece;
-import modeles.Lego;
+import modeles.LegoCat;
 import modeles.Rectangle;
 
 import java.io.IOException;
@@ -75,7 +75,7 @@ public class ControleurCatalegoPiece implements Initializable{
 	public int choixlegotaille;
 	public String choixtexture;
 	
-	public ArrayList<Lego> legoliste = new ArrayList<Lego>();
+	public ArrayList<LegoCat> legoliste = new ArrayList<LegoCat>();
 	public CatalegoPiece legolist;
 	public MyListener myListener;
 	
@@ -193,7 +193,7 @@ public class ControleurCatalegoPiece implements Initializable{
 			setChoixLego(this.legolist.get(this.legolist.firstKey()));
 			this.myListener = new MyListener() {
 				@Override
-				public void onClickListener(Lego lego) {
+				public void onClickListener(LegoCat lego) {
 					setChoixLego(lego);
 				}
 			};
@@ -226,7 +226,7 @@ public class ControleurCatalegoPiece implements Initializable{
 			}
 		}
 	}
-	public void setChoixLego(Lego lego) {
+	public void setChoixLego(LegoCat lego) {
 		this.nomLegoLabel.setText(lego.nom);
 		this.choixlegonom=lego.nom;
 		this.choixlegotaille=lego.taille;
@@ -245,7 +245,7 @@ public class ControleurCatalegoPiece implements Initializable{
 		setChoixLego(this.legolist.get(this.legolist.firstKey()));
 		this.myListener = new MyListener() {
 			@Override
-			public void onClickListener(Lego lego) {
+			public void onClickListener(LegoCat lego) {
 				setChoixLego(lego);
 
 			}

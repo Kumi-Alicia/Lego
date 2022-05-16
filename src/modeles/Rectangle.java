@@ -2,7 +2,7 @@ package modeles;
 
 import javafx.scene.paint.Color;
 
-public class Rectangle extends Lego{
+public class Rectangle extends LegoCat{
 	public Rectangle(String n,String img, String cCat,int t, Color cLeg) {
 		this.couleurLeg=cLeg;
 		this.couleurCat=cCat;
