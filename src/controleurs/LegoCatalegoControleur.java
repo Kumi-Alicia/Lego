@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import main.MyListener;
-import modeles.Lego;
+import modeles.LegoCat;
 
 public class LegoCatalegoControleur {
 	@FXML
@@ -20,10 +20,10 @@ public class LegoCatalegoControleur {
     private void click(MouseEvent mouseEvent) {
     	 this.myListener.onClickListener(lego);
     }
-    public Lego lego;
+    public LegoCat lego;
     public MyListener myListener;
     
-    public void setData(Lego leg,MyListener myListener) {
+    public void setData(LegoCat leg,MyListener myListener) {
     	this.lego=leg;
     	this.myListener = myListener;
     	

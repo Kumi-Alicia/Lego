@@ -2,7 +2,7 @@ package modeles;
 
 import javafx.scene.paint.Color;
 
-public class Carre extends Lego {
+public class Carre extends LegoCat {
 	public Carre(String n,String img, String cCat,int t, Color cLeg) {
 		this.couleurLeg=cLeg;
 		this.couleurCat=cCat;

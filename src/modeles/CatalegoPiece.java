@@ -9,7 +9,7 @@ import java.util.TreeMap;
 
 import javafx.scene.paint.Color;
 
-public class CatalegoPiece extends TreeMap<String,Lego>{
+public class CatalegoPiece extends TreeMap<String,LegoCat>{
 	public int tailleDicoInit=0;
 	public void dicoInitial() throws IOException {
 		super.clear();
@@ -42,7 +42,7 @@ public class CatalegoPiece extends TreeMap<String,Lego>{
 	
 	public void dicoRecherche(String mot) throws IOException {
 		dicoInitial();
-		TreeMap<String,Lego> nouveauDico = new TreeMap<String,Lego>();
+		TreeMap<String,LegoCat> nouveauDico = new TreeMap<String,LegoCat>();
 		for(String nom : super.keySet()) {
 			if(nom.toLowerCase().contains(mot.toLowerCase())) {
 				nouveauDico.put(nom, super.get(nom));
