@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleurs.ControleurQ1">
+   <children>
+      <BorderPane prefHeight="810.0" prefWidth="1315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <VBox prefHeight="818.0" prefWidth="1101.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="100.0" right="100.0" />
+               </BorderPane.margin>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="99.0" prefWidth="916.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="117.0" prefWidth="1141.0" text="Comment poser le 1er lego d'une pile?">
+                           <font>
+                              <Font name="Cambria" size="59.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="587.0" prefWidth="1116.0">
+                     <children>
+                        <ImageView fitHeight="403.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/gifq1.gif" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pour poser le 1er lego d'une pile" wrappingWidth="442.9092845916748">
+                           <font>
+                              <Font name="Cambria" size="39.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </bottom>
+         <top>
+            <VBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="1242.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnx" alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#quitter" prefHeight="26.0" prefWidth="4.0" text="X">
+                     <VBox.margin>
+                        <Insets right="30.0" />
+                     </VBox.margin></Button>
+               </children>
+            </VBox>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
