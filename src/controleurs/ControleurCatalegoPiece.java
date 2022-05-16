@@ -94,7 +94,7 @@ public class ControleurCatalegoPiece implements Initializable{
 	@FXML
 	void selectiontri(ActionEvent event) {
 		String s = tri.getSelectionModel().getSelectedItem().toString();
-		String []texture = {"mario"};
+		String []texture = {"herbe","bois","pierre","eau","brique","mario"};
 		String [] couleurs= {"blanc","bleu","gazon","gris","jaune","marron","noir","orange","rouge","rose","turquoise","vert","violet"};
 		String [][] typetri={couleurs,texture};
 		for(int i=0;i<this.legolist.tailleDicoInit;i++) {
