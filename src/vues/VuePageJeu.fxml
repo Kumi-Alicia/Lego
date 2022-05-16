@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.SubScene?>
 <?import javafx.scene.control.Button?>
@@ -29,7 +23,7 @@
                         <Insets right="100.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnrecharger" alignment="CENTER" mnemonicParsing="false" onAction="#charger" styleClass="police-page-jeu" stylesheets="@../style/style.css" text="Recharger">
+                  <Button fx:id="btnrecharger" alignment="CENTER" mnemonicParsing="false" onAction="#charger" styleClass="police-page-jeu" stylesheets="@../style/style.css" text="Charger">
                      <HBox.margin>
                         <Insets right="100.0" />
                      </HBox.margin>

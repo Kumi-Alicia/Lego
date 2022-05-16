@@ -51,7 +51,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="258.0" prefWidth="615.0" style="-fx-background-color: green;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="191.0" prefWidth="547.0" style="-fx-background-color: green;" styleClass="titre-page-accueuil" stylesheets="@../style/style.css" text="Charger" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#charger" prefHeight="191.0" prefWidth="547.0" style="-fx-background-color: green;" styleClass="titre-page-accueuil" stylesheets="@../style/style.css" text="Charger" textFill="WHITE">
                            <font>
                               <Font name="Cambria" size="32.0" />
                            </font>

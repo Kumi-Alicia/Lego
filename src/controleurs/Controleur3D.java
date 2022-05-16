@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import modeles.ChoisirSauvegarde;
 import modeles.DemandeSauvegarde;
 import modeles.LegoConstruc;
 import javafx.beans.property.DoubleProperty;
@@ -67,6 +68,7 @@ public class Controleur3D extends Observable {
 	public static Color selecCouleur=Color.ROYALBLUE;
 	public static int selecTaille=1;
 	public static String selecTexture=null;
+	
 	public Controleur3D() {
 		
 	}
@@ -582,12 +584,13 @@ public class Controleur3D extends Observable {
 	
 	@FXML
 	public void charger(ActionEvent event) throws IOException, ClassNotFoundException {
+		String sauvegarde = ChoisirSauvegarde.display();
 		plateau_jeu_liste = new LinkedList<LinkedList<Node>>();
 		int taille = plateau_jeu.getChildren().size();
 		for (int i=0;i<taille-1;i++) {
 			plateau_jeu.getChildren().remove(1);
 		}
-		FileInputStream fis = new FileInputStream(new File("src/save/construction.xml"));
+		FileInputStream fis = new FileInputStream(new File("src/save/"+sauvegarde));
 		BufferedInputStream bis = new BufferedInputStream(fis);
 		XMLDecoder decoder = new XMLDecoder(bis);
 		this.constructions = (LinkedList<LinkedList<LegoConstruc>>)decoder.readObject();
