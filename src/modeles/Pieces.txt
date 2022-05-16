@@ -11,7 +11,10 @@
  Carre blanc 1,/images/carreblanc1.jpg,000000,false,1,F3F1F1
  Carre gris 1,/images/carregris1.jpg,959292,false,1,AEACAC
  Carre turquoise 1,/images/carreturquoise1.jpg,false,3EF3BC,1,39E2AF
- Carre mario 1,/images/carremario1.png,FFD919,true,1,/images/mariotext1.png
+ Carre mario ? 1,/images/carremario1.png,FFD919,true,1,/images/mariotext1.png
+ Carre mario brique 1,/images/carremariobrique1.png,E27412,true,1,/images/mariotext2.png
+ Carre mario pow 1,/images/carremariopow1.png,57AAF9,true,1,/images/mariotext3.png
+ Carre mario sol 1,/images/carremariosol1.png,E27412,true,1,/images/mariotext4.png
  Carre eau 1,/images/carreeau1.jpg,338DFF,true,1,/images/eau.jpg
  Carre brique 1,/images/carrebrique1.jpg,F86B14,true,1,/images/brique.jpg
  Carre bois 1,/images/carrebois1.jpg,693C06,true,1,/images/bois.jpg
@@ -30,7 +33,7 @@
  Carre blanc 2,/images/carreblanc2.jpg,000000,false,2,F3F1F1
  Carre gris 2,/images/carregris2.jpg,959292,false,2,AEACAC
  Carre turquoise 2,/images/carreturquoise2.jpg,3EF3BC,false,2,39E2AF
- Carre mario 2,/images/carremario2.jpg,FFD919,true,2,/images/mariotext1.png
+ Carre mario ? 2,/images/carremario2.jpg,FFD919,true,2,/images/mariotext1.png
  Carre eau 2,/images/carreeau2.jpg,338DFF,true,2,/images/eau.jpg
  Carre brique 2,/images/carrebrique2.jpg,F86B14,true,2,/images/brique.jpg
  Carre bois 2,/images/carrebois2.jpg,693C06,true,2,/images/bois.jpg
@@ -49,7 +52,7 @@
  Rectangle blanc 1,/images/rectangleblanc1.jpg,000000,false,1,F3F1F1
  Rectangle gris 1,/images/rectanglegris1.jpg,959292,false,1,AEACAC
  Rectangle turquoise 1,/images/rectangleturquoise1.jpg,false,3EF3BC,1,39E2AF
- Rectangle mario 1,/images/rectanglemario1.jpg,FFD919,true,1,/images/mariotext1.png
+ Rectangle mario ? 1,/images/rectanglemario1.jpg,FFD919,true,1,/images/mariotext1.png
  Rectangle eau 1,/images/rectangleeau1.jpg,338DFF,true,1,/images/eau.jpg
  Rectangle brique 1,/images/rectanglebrique1.jpg,F86B14,true,1,/images/brique.jpg
  Rectangle bois 1,/images/rectanglebois1.jpg,693C06,true,1,/images/bois.jpg
@@ -68,7 +71,7 @@
  Rectangle orange 2,/images/rectangleorange2.jpg,F86B14,false,2,E86616
  Rectangle violet 2,/images/rectangleviolet2.jpg,C414F8,false,2,AF16DC
  Rectangle rose 2,/images/rectanglerose2.jpg,EE3DC5,false,2,DD36B6
- Rectangle mario 2,/images/rectanglemario2.jpg,FFD919,true,2,/images/mariotext1.png
+ Rectangle mario ? 2,/images/rectanglemario2.jpg,FFD919,true,2,/images/mariotext1.png
  Rectangle eau 2,/images/rectangleeau2.jpg,338DFF,true,2,/images/eau.jpg
  Rectangle brique 2,/images/rectanglebrique2.jpg,F86B14,true,2,/images/brique.jpg
  Rectangle bois 2,/images/rectanglebois2.jpg,693C06,true,2,/images/bois.jpg
@@ -87,9 +90,29 @@
  Rectangle orange 3,/images/rectangleorange3.jpg,F86B14,false,3,E86616
  Rectangle violet 3,/images/rectangleviolet3.jpg,C414F8,false,3,AF16DC
  Rectangle rose 3,/images/rectanglerose3.jpg,EE3DC5,false,3,DD36B6
- Rectangle mario 3,/images/rectanglemario3.jpg,FFD919,true,3,/images/mariotext1.png
+ Rectangle mario ? 3,/images/rectanglemario3.jpg,FFD919,true,3,/images/mariotext1.png
  Rectangle eau 3,/images/rectangleeau3.jpg,338DFF,true,3,/images/eau.jpg
  Rectangle brique 3,/images/rectanglebrique3.jpg,F86B14,true,3,/images/brique.jpg
  Rectangle bois 3,/images/rectanglebois3.jpg,693C06,true,3,/images/bois.jpg
  Rectangle pierre 3,/images/rectanglepierre3.jpg,959292,true,3,/images/pierre.jpg
  Rectangle herbe 3,/images/rectangleherbe3.jpg,A2F0A3,true,3,/images/herbe.jpg
+ Carre mario brique 2,/images/carremariobrique2.png,E27412,true,2,/images/mariotext2.png
+ Rectangle mario brique 1,/images/rectanglemariobrique1.png,E27412,true,1,/images/mariotext2.png
+ Rectangle mario brique 2,/images/rectanglemariobrique2.png,E27412,true,2,/images/mariotext2.png
+ Rectangle mario brique 3,/images/rectanglemariobrique3.png,E27412,true,3,/images/mariotext2.png
+ Carre mario sol 2,/images/carremariosol2.png,E27412,true,2,/images/mariotext4.png
+ Rectangle mario sol 1,/images/rectanglemariosol1.png,E27412,true,1,/images/mariotext4.png
+ Rectangle mario sol 2,/images/rectanglemariosol2.png,E27412,true,2,/images/mariotext4.png
+ Rectangle mario sol 3,/images/rectanglemariosol3.png,E27412,true,3,/images/mariotext4.png
+ Carre mario brique 2,/images/carremariobrique2.png,E27412,true,2,/images/mariotext2.png
+ Rectangle mario brique 1,/images/rectanglemariobrique1.png,E27412,true,1,/images/mariotext2.png
+ Rectangle mario brique 2,/images/rectanglemariobrique2.png,E27412,true,2,/images/mariotext2.png
+ Rectangle mario brique 3,/images/rectanglemariobrique3.png,E27412,true,3,/images/mariotext2.png
+ Carre mario pow 2,/images/carremariopow2.png,57AAF9,true,2,/images/mariotext3.png
+ Rectangle mario pow 1,/images/rectanglemariopow1.png,57AAF9,true,1,/images/mariotext3.png
+ Rectangle mario pow 2,/images/rectanglemariopow2.png,57AAF9,true,2,/images/mariotext3.png
+ Rectangle mario pow 3,/images/rectanglemariopow3.png,57AAF9,true,3,/images/mariotext3.png
+ Carre mario sol 2,/images/carremariosol2.png,E27412,true,2,/images/mariotext4.png
+ Rectangle mario sol 1,/images/rectanglemariosol1.png,E27412,true,1,/images/mariotext4.png
+ Rectangle mario sol 2,/images/rectanglemariosol2.png,E27412,true,2,/images/mariotext4.png
+ Rectangle mario sol 3,/images/rectanglemariosol3.png,E27412,true,3,/images/mariotext4.png

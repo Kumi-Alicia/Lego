@@ -95,16 +95,20 @@ public class ControleurCatalegoPiece implements Initializable{
 	void selectiontri(ActionEvent event) {
 		String s = tri.getSelectionModel().getSelectedItem().toString();
 		String []texture = {"herbe","bois","pierre","eau","brique","mario"};
+		String []taille = {"1","2","3"};
 		String [] couleurs= {"blanc","bleu","gazon","gris","jaune","marron","noir","orange","rouge","rose","turquoise","vert","violet"};
-		String [][] typetri={couleurs,texture};
+		String [][] typetri={couleurs,texture,taille};
 		for(int i=0;i<this.legolist.tailleDicoInit;i++) {
 			this.grid.getChildren().clear();
 		}
-		if(s=="Couleurs" || s=="Textures")
+		if(s=="Couleurs" || s=="Textures" || s=="Tailles")
 		{
 			int k;
 			if (s=="Couleurs") {
 				k = 0;
+			}
+			else if(s=="Tailles") {
+				k = 2;
 			}
 			else {
 				k=1;
@@ -240,7 +244,7 @@ public class ControleurCatalegoPiece implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.tri.getItems().addAll("Alphabetique","Couleurs","Textures");
+		this.tri.getItems().addAll("Alphabetique","Couleurs","Textures","Tailles");
 		this.tri.setValue("Alphabetique");
 		setChoixLego(this.legolist.get(this.legolist.firstKey()));
 		this.myListener = new MyListener() {
