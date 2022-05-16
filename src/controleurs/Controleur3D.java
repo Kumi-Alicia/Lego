@@ -621,10 +621,11 @@ public class Controleur3D extends Observable {
 				LegoConstruc piece_utilisation = constructions.get(j).get(k);
 				SmartGroup nvlle_piece = null;
 				if ( piece_utilisation.getTexture() == null) {
-					nvlle_piece = nouveauLego1(piece_utilisation.getType(),piece_utilisation.getTaille(),piece_utilisation.getX(),piece_utilisation.getY(),piece_utilisation.getZ(),Color.valueOf(piece_utilisation.getCouleur()),null);
+					System.out.println(piece_utilisation.couleur);
+					nvlle_piece = nouveauLego1(piece_utilisation.getType(),piece_utilisation.getTaille(),piece_utilisation.getX(),piece_utilisation.getY(),piece_utilisation.getZ(),Color.web(piece_utilisation.getCouleur()),null);
 				}
 				else {
-					nvlle_piece = nouveauLego1(piece_utilisation.getType(),piece_utilisation.getTaille(),piece_utilisation.getX(),piece_utilisation.getY(),piece_utilisation.getZ(),null,piece_utilisation.getTexture());
+					nvlle_piece = nouveauLego1(piece_utilisation.getType(),piece_utilisation.getTaille(),piece_utilisation.getX(),piece_utilisation.getY(),piece_utilisation.getZ(),Color.ROYALBLUE,piece_utilisation.getTexture());
 				}
 				initMouseControl(nvlle_piece,subScene3D, stage);
 				nvlle_piece.setRotationAxis(Rotate.Y_AXIS);
