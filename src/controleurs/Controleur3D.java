@@ -635,9 +635,7 @@ public class Controleur3D extends Observable {
 				
 			}
 		}
-		plateau_jeu.getChildren().get(0).translateXProperty().set(WIDTH/2);
-		plateau_jeu.getChildren().get(0).translateYProperty().set((HEIGHT/1.5) + 30);
-		plateau_jeu.getChildren().get(0).translateZProperty().set(-800);
+		
 		
 		
 	}
