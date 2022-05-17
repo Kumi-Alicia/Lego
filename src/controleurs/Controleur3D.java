@@ -630,9 +630,16 @@ public class Controleur3D extends Observable {
 				initMouseControl(nvlle_piece,subScene3D, stage);
 				nvlle_piece.setRotationAxis(Rotate.Y_AXIS);
 				nvlle_piece.setRotate(plateau_jeu.getChildren().get(0).getRotate());
-				nvlle_pile.add(nvlle_piece);			
+				nvlle_pile.add(nvlle_piece);
+				
+				
 			}
 		}
+		plateau_jeu.getChildren().get(0).translateXProperty().set(WIDTH/2);
+		plateau_jeu.getChildren().get(0).translateYProperty().set((HEIGHT/1.5) + 30);
+		plateau_jeu.getChildren().get(0).translateZProperty().set(-800);
+		
+		
 	}
 
 	@FXML
